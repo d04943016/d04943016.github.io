@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scientific Software — Wei-Kai Lee</title>
+<meta name="description" content="Scientific software side projects: simulation workbenches, lab workflow platforms, AI tooling, and data systems. Built end-to-end with vibe coding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=13">
+</head>
+<body>
+
+<nav class="site">
+  <div class="bar">
+    <a class="logo" href="index.html">WK<b>·</b>LEE <b>/ λ</b></a>
+    <button class="nav-toggle" id="navToggle">MENU</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="ai.html">AI × Semiconductor</a>
+      <a href="research.html">Research</a>
+      <a href="software.html" class="active">Software</a>
+      <a href="publications.html">Publications</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+  <div class="spectral-rule"></div>
+</nav>
+
+<div class="page-hero">
+  <div class="glow" style="width:520px;height:520px;background:rgba(122,229,130,.06);top:-140px;right:-80px"></div>
+  <div class="wrap">
+    <div class="crumb reveal" style="color:var(--green)">Side projects · agentic coding · evenings & weekends</div>
+    <h1 class="page-title reveal d1">Scientific Software</h1>
+    <p class="page-lede reveal d2">Script-based physics turned into products: simulation workbenches, lab-workflow platforms, AI tooling, and data systems — designed, built, and shipped solo. <b style="color:var(--ink)">Click a card</b> for highlights and the GitHub write-up.</p>
+    <div class="contact-row reveal d3" style="margin-top:24px">
+      <a class="chip" href="https://github.com/d04943016/vibe-coding-portfolio" target="_blank" rel="noopener"><span class="dot" style="background:var(--green)"></span>vibe-coding-portfolio on GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<section style="padding-top:26px">
+  <div class="wrap">
+    <div class="filters reveal" id="swFilters"></div>
+    <div class="grid" id="swMount"></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="contact-row reveal">
+      <a class="chip" href="research.html"><span class="dot" style="background:var(--amber)"></span>The physics these tools encode ↗</a>
+      <a class="chip" href="ai.html"><span class="dot" style="background:var(--cyan)"></span>The day job: AI at TSMC ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip" id="contact">
+  <div class="wrap">
+    <h2 class="reveal">Get in touch</h2>
+    <p class="lede reveal d1">Physics-informed AI · scientific software · semiconductor R&D</p>
+    <a class="email-big reveal d2" href="https://www.linkedin.com/in/wei-kai-lee-bab8b896" target="_blank" rel="noopener">linkedin.com/in/wei-kai-lee</a>
+    <div class="contact-row reveal d3" style="justify-content:center">
+      <a class="chip" href="https://github.com/d04943016" target="_blank" rel="noopener"><span class="dot" style="background:var(--cyan)"></span>GitHub</a>
+      <a class="chip" href="https://scholar.google.com/citations?user=BZOi4b0AAAAJ" target="_blank" rel="noopener"><span class="dot" style="background:var(--amber)"></span>Google Scholar</a>
+      <a class="chip" href="https://orcid.org/0000-0002-5972-501X" target="_blank" rel="noopener"><span class="dot" style="background:var(--red)"></span>ORCID</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Wei-Kai Lee 李偉愷</span>
+    <span>λ 380 → 700 nm · physics × AI</span>
+  </div>
+</footer>
+
+<script src="js/data.js?v=2"></script>
+<script src="js/site.js?v=2"></script>
+<script>
+renderProjectGrid({
+  mountId: 'swMount',
+  filterId: 'swFilters',
+  items: SOFTWARE,
+  cats: SOFTWARE_CATS,
+  showLinkArrow: false
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI × Semiconductor — Wei-Kai Lee</title>
+<meta name="description" content="AI/ML projects at TSMC Pathfinding: AI chemical design, physics-informed recipe optimization, and LLM knowledge discovery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=13">
+</head>
+<body>
+
+<nav class="site">
+  <div class="bar">
+    <a class="logo" href="index.html">WK<b>·</b>LEE <b>/ λ</b></a>
+    <button class="nav-toggle" id="navToggle">MENU</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="ai.html" class="active">AI × Semiconductor</a>
+      <a href="research.html">Research</a>
+      <a href="software.html">Software</a>
+      <a href="publications.html">Publications</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+  <div class="spectral-rule"></div>
+</nav>
+
+<div class="page-hero">
+  <div class="glow" style="width:520px;height:520px;background:rgba(38,224,200,.07);top:-140px;right:-80px"></div>
+  <div class="wrap">
+    <div class="crumb reveal">TSMC · Pathfinding RD · 2022 — present</div>
+    <h1 class="page-title reveal d1">AI × Semiconductor</h1>
+    <p class="page-lede reveal d2">Three flagship AI systems for early-stage semiconductor R&D — each one started from <b style="color:var(--ink)">no workflow, no data, no headcount</b>, and ended validated by experiments and adopted by other teams. Click through objective → challenge → result.</p>
+  </div>
+</div>
+
+<section id="projects" style="padding-top:30px">
+  <div class="wrap" id="aiMount"><!-- rendered by JS --></div>
+</section>
+
+<section id="more" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num"><span class="wl" style="background:#ffc857"></span>BEYOND PROJECTS</span>
+      <h2>Capability that outlives me</h2>
+    </div>
+    <div class="grid" style="margin-top:44px">
+      <div class="card reveal" style="cursor:default">
+        <div class="body" style="padding-top:24px">
+          <h4>🖥️ Shared HPC Infrastructure</h4>
+          <p>Partnered with IT to establish and manage shared HPC for AI and atomic-scale simulation in Pathfinding — engineers run compute-intensive workflows quickly and independently.</p>
+        </div>
+      </div>
+      <div class="card reveal d1" style="cursor:default">
+        <div class="body" style="padding-top:24px">
+          <h4>🌱 Mentorship</h4>
+          <p>Led 5 R&D interns on AI Chemical Design and Knowledge Discovery as project lead — 1 converted to a full-time hire.</p>
+        </div>
+      </div>
+      <div class="card reveal d2" style="cursor:default">
+        <div class="body" style="padding-top:24px">
+          <h4>📚 Internal Training</h4>
+          <p>Delivered company training programs on AI Chemical Design and Knowledge Discovery, scaling AI/ML methodology across TSMC R&D.</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-row reveal" style="margin-top:40px">
+      <a class="chip" href="research.html"><span class="dot" style="background:var(--amber)"></span>The physics behind it: NTU research ↗</a>
+      <a class="chip" href="software.html"><span class="dot" style="background:var(--green)"></span>Same mindset, weekend scale: software ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip" id="contact">
+  <div class="wrap">
+    <h2 class="reveal">Get in touch</h2>
+    <p class="lede reveal d1">Physics-informed AI · scientific software · semiconductor R&D</p>
+    <a class="email-big reveal d2" href="https://www.linkedin.com/in/wei-kai-lee-bab8b896" target="_blank" rel="noopener">linkedin.com/in/wei-kai-lee</a>
+    <div class="contact-row reveal d3" style="justify-content:center">
+      <a class="chip" href="https://github.com/d04943016" target="_blank" rel="noopener"><span class="dot" style="background:var(--cyan)"></span>GitHub</a>
+      <a class="chip" href="https://scholar.google.com/citations?user=BZOi4b0AAAAJ" target="_blank" rel="noopener"><span class="dot" style="background:var(--amber)"></span>Google Scholar</a>
+      <a class="chip" href="https://orcid.org/0000-0002-5972-501X" target="_blank" rel="noopener"><span class="dot" style="background:var(--red)"></span>ORCID</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Wei-Kai Lee 李偉愷</span>
+    <span>λ 380 → 700 nm · physics × AI</span>
+  </div>
+</footer>
+
+<script src="js/data.js?v=2"></script>
+<script src="js/site.js?v=2"></script>
+<script>
+const mount = document.getElementById('aiMount');
+mount.innerHTML = AI_PROJECTS.map((p,i)=>`
+  <div class="ai-project reveal" style="--tab-c:${p.color}">
+    <div class="head">
+      <h3>${p.title}</h3>
+      <span class="impact">${p.impact}</span>
+    </div>
+    <div class="ai-grid">
+      <div class="slide-img" style="cursor:default;background:radial-gradient(420px 300px at 30% 30%,color-mix(in srgb,${p.color} 14%,transparent),transparent 70%),radial-gradient(420px 300px at 75% 75%,rgba(123,107,255,.10),transparent 70%),#0a0d10;display:flex;align-items:center;justify-content:center;min-height:280px">
+        <span style="font-family:var(--mono);font-size:30px;background:var(--spectrum);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.06em">${p.title.split(' ').slice(0,2).join(' ').toLowerCase()}</span>
+      </div>
+      <div class="ai-tabs">
+        <div class="tab-row">
+          <button class="tab-btn active"><span class="n">1</span>Objective</button>
+          <button class="tab-btn"><span class="n">2</span>Challenge</button>
+          <button class="tab-btn"><span class="n">3</span>Methods & Results</button>
+        </div>
+        <div class="tab-panel active"><ul>${p.objective.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="tab-panel"><ul>${p.challenge.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="tab-panel"><ul>${p.results.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      </div>
+    </div>
+  </div>`).join('');
+initAITabs();
+observeReveals(mount);
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper — Wei-Kai Lee</title>
+<meta name="description" content="Paper introduction — key points, my contribution, and links.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=13">
+</head>
+<body>
+
+<nav class="site">
+  <div class="bar">
+    <a class="logo" href="index.html">WK<b>·</b>LEE <b>/ λ</b></a>
+    <button class="nav-toggle" id="navToggle">MENU</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="ai.html">AI × Semiconductor</a>
+      <a href="research.html">Research</a>
+      <a href="software.html">Software</a>
+      <a href="publications.html" class="active">Publications</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+  <div class="spectral-rule"></div>
+</nav>
+
+<div class="page-hero" style="padding-bottom:36px">
+  <div class="glow" style="width:520px;height:520px;background:rgba(79,195,247,.06);top:-140px;right:-80px"></div>
+  <div class="wrap" id="paperHero"></div>
+</div>
+
+<section style="padding-top:10px">
+  <div class="wrap paper-grid" id="paperBody"></div>
+</section>
+
+<div class="story-next" id="paperNext"></div>
+
+<div class="contact-strip" id="contact">
+  <div class="wrap">
+    <h2 class="reveal">Get in touch</h2>
+    <p class="lede reveal d1">Physics-informed AI · scientific software · semiconductor R&D</p>
+    <a class="email-big reveal d2" href="https://www.linkedin.com/in/wei-kai-lee-bab8b896" target="_blank" rel="noopener">linkedin.com/in/wei-kai-lee</a>
+    <div class="contact-row reveal d3" style="justify-content:center">
+      <a class="chip" href="https://github.com/d04943016" target="_blank" rel="noopener"><span class="dot" style="background:var(--cyan)"></span>GitHub</a>
+      <a class="chip" href="https://scholar.google.com/citations?user=BZOi4b0AAAAJ" target="_blank" rel="noopener"><span class="dot" style="background:var(--amber)"></span>Google Scholar</a>
+      <a class="chip" href="https://orcid.org/0000-0002-5972-501X" target="_blank" rel="noopener"><span class="dot" style="background:var(--red)"></span>ORCID</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Wei-Kai Lee 李偉愷</span>
+    <span><a href="publications.html" style="border-bottom:1px dotted var(--ink-faint)">← all publications</a></span>
+  </div>
+</footer>
+
+<script src="js/pubs.js?v=2"></script>
+<script src="js/paper-figs.js?v=2"></script>
+<script src="js/site.js?v=2"></script>
+<script>
+(function(){
+  const id = new URLSearchParams(location.search).get('id') || ALL_PAPERS[0].id;
+  const idx = Math.max(0, ALL_PAPERS.findIndex(p => p.id === id));
+  const p = ALL_PAPERS[idx];
+  const isConf = !!p.v;
+  const cat = isConf ? { label:"Conference · "+p.v, color:"var(--green)" } : PUB_TOPICS[p.topic];
+
+  document.title = p.t.slice(0,60) + " — Wei-Kai Lee";
+
+  const scholarLink = 'https://scholar.google.com/scholar?q=' + encodeURIComponent('"' + p.t.slice(0,90) + '"');
+  const link = p.doi ? 'https://doi.org/' + p.doi : scholarLink;
+
+  document.getElementById('paperHero').innerHTML = `
+    <div class="crumb reveal" style="color:${cat.color}">
+      <a href="publications.html" style="border-bottom:1px dotted var(--ink-faint)">Publications</a>&nbsp;/&nbsp;${cat.label} · ${p.y}
+    </div>
+    <h1 class="page-title reveal d1" style="font-size:clamp(26px,3.6vw,42px);max-width:980px">${p.t}</h1>
+    <div class="contact-row reveal d2" style="margin-top:22px">
+      ${p.role==='first' ? '<span class="role-badge first" style="font-size:11px;padding:5px 12px">First author</span>' : ''}
+      ${p.role==='cofirst' ? '<span class="role-badge cofirst" style="font-size:11px;padding:5px 12px">Co-first author</span>' : ''}
+      ${p.hl ? `<span class="hl-badge" style="font-size:11.5px;padding:5px 12px">${p.hl}</span>` : ''}
+      <span class="chip" style="cursor:default"><span class="dot" style="background:${cat.color}"></span>${p.j || p.v || p.y}</span>
+      <a class="chip" href="${link}" target="_blank" rel="noopener"><span class="dot" style="background:var(--blue)"></span>${p.doi ? 'Read the paper (DOI) ↗' : 'Find on Google Scholar ↗'}</a>
+      ${p.story ? `<a class="chip" href="project.html?id=${p.story}"><span class="dot" style="background:var(--amber)"></span>Related research story →</a>` : ''}
+    </div>`;
+
+  document.getElementById('paperBody').innerHTML = `
+    ${p.intro ? `
+    <div class="paper-intro reveal">
+      <h3 class="pp-h">Introduction</h3>
+      <p>${p.intro}</p>
+    </div>` : ''}
+    <div class="paper-figwrap reveal d1">
+      <div class="paper-fig" id="paperFig"></div>
+      <div class="pf-note">Schematic redrawn for this site — no publisher material reproduced.</div>
+    </div>
+    <div class="paper-cols">
+      <div class="reveal d1">
+        <h3 class="pp-h">Key points</h3>
+        <ul class="m-facts">${(p.points||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div>
+      <div class="reveal d2">
+        <div class="contrib-block" style="margin-top:0">
+          <h3 class="pp-h" style="color:var(--amber)">My contribution</h3>
+          <p>${p.contrib || ''}</p>
+        </div>
+        ${p.story ? `
+        <div style="margin-top:24px">
+          <a class="m-link" href="project.html?id=${p.story}">How this fits my main work → scroll the story</a>
+        </div>` : ''}
+      </div>
+    </div>`;
+  renderPaperFig(document.getElementById('paperFig'), p.fig);
+
+  const prev = ALL_PAPERS[(idx - 1 + ALL_PAPERS.length) % ALL_PAPERS.length];
+  const next = ALL_PAPERS[(idx + 1) % ALL_PAPERS.length];
+  document.getElementById('paperNext').innerHTML = `
+    <a href="paper.html?id=${prev.id}">
+      <span class="sn-k">← Previous paper</span>
+      <span class="sn-t" style="font-size:17px">${prev.t.slice(0,90)}${prev.t.length>90?'…':''}</span>
+    </a>
+    <a href="paper.html?id=${next.id}">
+      <span class="sn-k">Next paper →</span>
+      <span class="sn-t" style="font-size:17px">${next.t.slice(0,90)}${next.t.length>90?'…':''}</span>
+    </a>`;
+
+  document.addEventListener('click', e=>{
+    const f = e.target.closest('[data-zoom]');
+    if(f) openLightbox(f.dataset.zoom);
+  });
+  observeReveals();
+})();
+</script>
+</body>
+</html>

@@ -233,7 +233,7 @@ function initLanguageToggle(){
   btn.className = 'lang-toggle';
   btn.type = 'button';
   btn.addEventListener('click',()=>setLanguage(isZh() ? 'en' : 'zh'));
-  bar.insertBefore(btn, document.getElementById('navToggle'));
+  bar.appendChild(btn);
 }
 
 /* ============ shared interactions ============ */

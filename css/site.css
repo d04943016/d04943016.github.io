@@ -40,10 +40,10 @@ nav.site{
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   background:rgba(6,8,9,.78);border-bottom:1px solid var(--line);
 }
-nav.site .bar{max-width:1160px;margin:0 auto;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between}
+nav.site .bar{max-width:1160px;margin:0 auto;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:flex-start;gap:18px}
 .logo{font-family:var(--mono);font-size:14px;letter-spacing:.08em;color:var(--ink)}
 .logo b{color:var(--cyan);font-weight:500}
-.nav-links{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em}
+.nav-links{display:flex;gap:24px;margin-left:auto;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em}
 .nav-links a{color:var(--ink-dim);transition:color .25s;position:relative;padding:4px 0}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a.active{color:var(--ink)}

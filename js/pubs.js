@@ -6,11 +6,11 @@
    img (page-1 render in assets/papers/), story (research story link)
    ================================================================== */
 const PUB_TOPICS = {
-  outcoupling: { label: "Out-coupling & Electrodes", color: "var(--cyan)" },
-  materials:   { label: "TADF & Emitter Materials",  color: "var(--red)" },
-  display:     { label: "Display Optics & Pixels",   color: "var(--green)" },
-  analysis:    { label: "Modeling & Analyses",       color: "var(--blue)" },
-  other:       { label: "Beyond OLED",               color: "var(--violet)" }
+  outcoupling: { label: "Out-coupling & Electrodes", labelZh: "出光與電極", color: "var(--cyan)" },
+  materials:   { label: "TADF & Emitter Materials", labelZh: "TADF 與發光材料",  color: "var(--red)" },
+  display:     { label: "Display Optics & Pixels", labelZh: "顯示光學與像素",   color: "var(--green)" },
+  analysis:    { label: "Modeling & Analyses", labelZh: "建模與分析",       color: "var(--blue)" },
+  other:       { label: "Beyond OLED", labelZh: "OLED 之外",               color: "var(--violet)" }
 };
 
 const PUBS = [

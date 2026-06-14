@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=14">
+<link rel="stylesheet" href="css/site.css?v=15">
 </head>
 <body>
 
@@ -178,9 +178,9 @@
   </div>
 </footer>
 
-<script src="js/pubs.js?v=14"></script>
-<script src="js/site.js?v=14"></script>
-<script src="js/charts.js?v=14"></script>
+<script src="js/pubs.js?v=15"></script>
+<script src="js/site.js?v=15"></script>
+<script src="js/charts.js?v=15"></script>
 <script>
 /* featured cards */
 const FEATURED = [
@@ -202,7 +202,7 @@ document.getElementById('pubFeatured').innerHTML = FEATURED.map((f,i)=>{
     <span class="pc-metric">${f.metric}</span>
     <h4><a class="pt-link" href="paper.html?id=${f.pid}">${f.t}</a></h4>
     <span class="pc-j">${f.j}</span>
-    ${ext?`<a href="${ext}" target="_blank" rel="noopener">[Link]</a> `:''}<a href="paper.html?id=${f.pid}">intro →</a>${f.story?` <a href="project.html?id=${f.story}">story →</a>`:''}
+    ${ext?`<a href="${ext}" target="_blank" rel="noopener">${uiText('link')}</a> `:''}<a href="paper.html?id=${f.pid}">${uiText('intro')}</a>${f.story?` <a href="project.html?id=${f.story}">${uiText('story')}</a>`:''}
   </div>`;
 }).join('');
 
@@ -214,24 +214,24 @@ function renderPubs(topic, firstOnly){
   listEl.innerHTML = items.map(p=>`
     <div class="pub-item" style="--pc:${PUB_TOPICS[p.topic].color}">
       <span class="py">${p.y}</span>
-      <span class="pt"><a class="pt-link" href="paper.html?id=${p.id}">${p.t}</a><span class="pj"><i>●</i> ${p.j||'—'} · ${PUB_TOPICS[p.topic].label}</span></span>
+      <span class="pt"><a class="pt-link" href="paper.html?id=${p.id}">${p.t}</a><span class="pj"><i>●</i> ${p.j||'—'} · ${i18nCat(PUB_TOPICS[p.topic])}</span></span>
       <span class="pside">
-        ${p.role==='first'?'<span class="role-badge first">First</span>':''}
-        ${p.role==='cofirst'?'<span class="role-badge cofirst">Co-first</span>':''}
+        ${p.role==='first'?`<span class="role-badge first">${uiText('first')}</span>`:''}
+        ${p.role==='cofirst'?`<span class="role-badge cofirst">${uiText('cofirst')}</span>`:''}
         ${p.hl?`<span class="hl-badge">${p.hl}</span>`:''}
-        ${paperUrl(p)?`<a class="story-link" href="${paperUrl(p)}" target="_blank" rel="noopener">[Link]</a>`:''}
-        <a class="story-link" href="paper.html?id=${p.id}">intro →</a>
-        ${p.story?`<a class="story-link" href="project.html?id=${p.story}">story →</a>`:''}
+        ${paperUrl(p)?`<a class="story-link" href="${paperUrl(p)}" target="_blank" rel="noopener">${uiText('link')}</a>`:''}
+        <a class="story-link" href="paper.html?id=${p.id}">${uiText('intro')}</a>
+        ${p.story?`<a class="story-link" href="project.html?id=${p.story}">${uiText('story')}</a>`:''}
       </span>
     </div>`).join('');
 }
 const filtersEl = document.getElementById('pubFilters');
 const counts = {}; PUBS.forEach(p=>counts[p.topic]=(counts[p.topic]||0)+1);
 filtersEl.innerHTML =
-  `<button class="filter active" data-f="all">All <span class="cnt">${PUBS.length}</span></button>` +
+  `<button class="filter active" data-f="all">${uiText('all')} <span class="cnt">${PUBS.length}</span></button>` +
   Object.entries(PUB_TOPICS).filter(([k])=>counts[k]).map(([k,c])=>
-    `<button class="filter" data-f="${k}">${c.label} <span class="cnt">${counts[k]}</span></button>`).join('') +
-  `<button class="filter" data-f="__first">★ First-author only</button>`;
+    `<button class="filter" data-f="${k}">${i18nCat(c)} <span class="cnt">${counts[k]}</span></button>`).join('') +
+  `<button class="filter" data-f="__first">${uiText('firstOnly')}</button>`;
 let curTopic='all', curFirst=false;
 filtersEl.addEventListener('click',e=>{
   const btn=e.target.closest('.filter'); if(!btn) return;
@@ -250,10 +250,10 @@ document.getElementById('confList').innerHTML = CONFS.slice().sort((a,b)=>b.y-a.
     <span class="py">${c.y}</span>
     <span class="pt"><a class="pt-link" href="paper.html?id=${c.id}">${c.t}</a><span class="pj"><i>●</i> ${c.v}</span></span>
     <span class="pside">
-      ${c.role==='first'?'<span class="role-badge first">First</span>':''}
-      ${paperUrl(c)?`<a class="story-link" href="${paperUrl(c)}" target="_blank" rel="noopener">[Link]</a>`:''}
-      <a class="story-link" href="paper.html?id=${c.id}">intro →</a>
-      ${c.story?`<a class="story-link" href="project.html?id=${c.story}">story →</a>`:''}
+      ${c.role==='first'?`<span class="role-badge first">${uiText('first')}</span>`:''}
+      ${paperUrl(c)?`<a class="story-link" href="${paperUrl(c)}" target="_blank" rel="noopener">${uiText('link')}</a>`:''}
+      <a class="story-link" href="paper.html?id=${c.id}">${uiText('intro')}</a>
+      ${c.story?`<a class="story-link" href="project.html?id=${c.story}">${uiText('story')}</a>`:''}
     </span>
   </div>`).join('');
 
@@ -268,7 +268,7 @@ document.getElementById('patentGrid').innerHTML = PATENTS.map((p,i)=>`
 document.getElementById('thEn').textContent = THESIS.en;
 document.getElementById('thZh').textContent = THESIS.zh;
 document.getElementById('thMeta').innerHTML =
-  `${THESIS.school}<br>Advisor: ${THESIS.advisor} · ${THESIS.year} · DOI ${THESIS.doi}`;
+  `${THESIS.school}<br>${uiText('advisor')}: ${THESIS.advisor} · ${THESIS.year} · DOI ${THESIS.doi}`;
 
 /* init year chart + reveals */
 initChartsIn(document);

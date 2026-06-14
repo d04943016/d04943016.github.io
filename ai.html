@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=14">
+<link rel="stylesheet" href="css/site.css?v=15">
 </head>
 <body>
 
@@ -94,23 +94,23 @@
   </div>
 </footer>
 
-<script src="js/data.js?v=14"></script>
-<script src="js/site.js?v=14"></script>
+<script src="js/data.js?v=15"></script>
+<script src="js/site.js?v=15"></script>
 <script>
 const mount = document.getElementById('aiMount');
 mount.innerHTML = AI_PROJECTS.map((p,i)=>`
   <div class="ai-project reveal" style="--tab-c:${p.color}">
     <div class="head">
-      <h3>${p.title}</h3>
+      <h3>${i18n(p, 'title')}</h3>
     </div>
     <div class="ai-grid">
       <div class="ai-tabs">
         <div class="tab-row">
-          <button class="tab-btn active"><span class="n">1</span>Objective</button>
-          <button class="tab-btn"><span class="n">2</span>Challenge</button>
+          <button class="tab-btn active"><span class="n">1</span>${isZh() ? '目標' : 'Objective'}</button>
+          <button class="tab-btn"><span class="n">2</span>${isZh() ? '挑戰' : 'Challenge'}</button>
         </div>
-        <div class="tab-panel active"><ul>${p.objective.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-        <div class="tab-panel"><ul>${p.challenge.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="tab-panel active"><ul>${i18nList(p, 'objective').map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="tab-panel"><ul>${i18nList(p, 'challenge').map(x=>`<li>${x}</li>`).join('')}</ul></div>
       </div>
     </div>
   </div>`).join('');

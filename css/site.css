@@ -48,6 +48,13 @@ nav.site .bar{max-width:1160px;margin:0 auto;padding:0 28px;height:60px;display:
 .nav-links a:hover{color:var(--ink)}
 .nav-links a.active{color:var(--ink)}
 .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--spectrum);border-radius:2px}
+.lang-toggle{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;cursor:pointer;
+  border:1px solid var(--line-strong);border-radius:100px;padding:6px 12px;
+  color:var(--ink-dim);background:rgba(255,255,255,.02);transition:all .25s;
+  margin-left:18px;white-space:nowrap;
+}
+.lang-toggle:hover{color:var(--ink);border-color:var(--cyan);box-shadow:0 0 18px rgba(38,224,200,.16)}
 .nav-toggle{display:none;background:none;border:1px solid var(--line-strong);color:var(--ink);font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:6px;cursor:pointer}
 .spectral-rule{height:2px;background:var(--spectrum);opacity:.85}
 
@@ -312,6 +319,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .ai-grid{grid-template-columns:1fr}
 }
 @media(max-width:660px){
+  nav.site .bar{gap:10px}
+  .logo{margin-right:auto}
+  .lang-toggle{margin-left:0;padding:6px 10px}
   .nav-links{
     display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;
     background:rgba(6,8,9,.97);border-bottom:1px solid var(--line);padding:10px 28px 18px;

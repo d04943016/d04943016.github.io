@@ -68,8 +68,9 @@ const VISUALS = { image:vImage, bignum:vBignum, bars:vBars, flow:vFlow, stack:vS
   const project = RESEARCH[idx];
   const story = STORIES[project.id] || [];
   const cat = RESEARCH_CATS[project.cat];
+  const projectTitle = i18n(project, 'title');
 
-  document.title = project.title + " — Wei-Kai Lee";
+  document.title = projectTitle + " — Wei-Kai Lee";
   document.documentElement.style.setProperty('--story-c', cat.color);
 
   /* hero */
@@ -78,15 +79,15 @@ const VISUALS = { image:vImage, bignum:vBignum, bars:vBars, flow:vFlow, stack:vS
     <div class="cover-fade"></div>
     <div class="wrap">
       <div class="crumb reveal" style="color:${cat.color}">
-        <a href="research.html">Research</a>&nbsp;/&nbsp;${cat.label}
+        <a href="research.html">${isZh() ? '研究' : 'Research'}</a>&nbsp;/&nbsp;${i18nCat(cat)}
       </div>
-      <h1 class="reveal d1">${project.title}</h1>
-      <p class="tagline reveal d2">${project.tagline}</p>
+      <h1 class="reveal d1">${projectTitle}</h1>
+      <p class="tagline reveal d2">${i18n(project, 'tagline')}</p>
       <div class="hero-meta reveal d3">
         ${(project.tags||[]).map(t=>`<span class="chip" style="cursor:default"><span class="dot" style="background:${cat.color}"></span>${t}</span>`).join('')}
       </div>
     </div>
-    <div class="scroll-cue">SCROLL</div>`;
+    <div class="scroll-cue">${isZh() ? '向下' : 'SCROLL'}</div>`;
 
   /* steps */
   const total = story.length;
@@ -108,7 +109,7 @@ const VISUALS = { image:vImage, bignum:vBignum, bars:vBars, flow:vFlow, stack:vS
   /* refs */
   document.getElementById('storyRefs').innerHTML = `
     <div class="wrap">
-      <h4>References & Notes</h4>
+      <h4>${isZh() ? '參考資料與備註' : 'References & Notes'}</h4>
       <div class="ref-line">${(project.refs||[]).map(r=>'» '+r).join('<br>')}</div>
       <div class="m-tags">${(project.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>
     </div>`;
@@ -118,12 +119,12 @@ const VISUALS = { image:vImage, bignum:vBignum, bars:vBars, flow:vFlow, stack:vS
   const next = RESEARCH[(idx + 1) % RESEARCH.length];
   document.getElementById('storyNext').innerHTML = `
     <a href="project.html?id=${prev.id}">
-      <span class="sn-k">← Previous project</span>
-      <span class="sn-t">${prev.title}</span>
+      <span class="sn-k">${isZh() ? '← 上一個專案' : '← Previous project'}</span>
+      <span class="sn-t">${i18n(prev, 'title')}</span>
     </a>
     <a href="project.html?id=${next.id}">
-      <span class="sn-k">Next project →</span>
-      <span class="sn-t">${next.title}</span>
+      <span class="sn-k">${isZh() ? '下一個專案 →' : 'Next project →'}</span>
+      <span class="sn-t">${i18n(next, 'title')}</span>
     </a>`;
 
   /* dot rail */

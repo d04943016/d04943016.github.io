@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=14">
+<link rel="stylesheet" href="css/site.css?v=15">
 </head>
 <body>
 
@@ -59,16 +59,16 @@
   </div>
 </footer>
 
-<script src="js/pubs.js?v=14"></script>
-<script src="js/paper-figs.js?v=14"></script>
-<script src="js/site.js?v=14"></script>
+<script src="js/pubs.js?v=15"></script>
+<script src="js/paper-figs.js?v=15"></script>
+<script src="js/site.js?v=15"></script>
 <script>
 (function(){
   const id = new URLSearchParams(location.search).get('id') || ALL_PAPERS[0].id;
   const idx = Math.max(0, ALL_PAPERS.findIndex(p => p.id === id));
   const p = ALL_PAPERS[idx];
   const isConf = !!p.v;
-  const cat = isConf ? { label:"Conference · "+p.v, color:"var(--green)" } : PUB_TOPICS[p.topic];
+  const cat = isConf ? { label:"Conference · "+p.v, labelZh: uiText('conference') + p.v, color:"var(--green)" } : PUB_TOPICS[p.topic];
 
   document.title = p.t.slice(0,60) + " — Wei-Kai Lee";
 
@@ -78,41 +78,41 @@
 
   document.getElementById('paperHero').innerHTML = `
     <div class="crumb reveal" style="color:${cat.color}">
-      <a href="publications.html" style="border-bottom:1px dotted var(--ink-faint)">Publications</a>&nbsp;/&nbsp;${cat.label} · ${p.y}
+      <a href="publications.html" style="border-bottom:1px dotted var(--ink-faint)">${uiText('publications')}</a>&nbsp;/&nbsp;${i18nCat(cat)} · ${p.y}
     </div>
     <h1 class="page-title reveal d1" style="font-size:clamp(26px,3.6vw,42px);max-width:980px">${p.t}</h1>
     <div class="contact-row reveal d2" style="margin-top:22px">
-      ${p.role==='first' ? '<span class="role-badge first" style="font-size:11px;padding:5px 12px">First author</span>' : ''}
-      ${p.role==='cofirst' ? '<span class="role-badge cofirst" style="font-size:11px;padding:5px 12px">Co-first author</span>' : ''}
+      ${p.role==='first' ? `<span class="role-badge first" style="font-size:11px;padding:5px 12px">${isZh() ? '第一作者' : 'First author'}</span>` : ''}
+      ${p.role==='cofirst' ? `<span class="role-badge cofirst" style="font-size:11px;padding:5px 12px">${isZh() ? '共同第一作者' : 'Co-first author'}</span>` : ''}
       ${p.hl ? `<span class="hl-badge" style="font-size:11.5px;padding:5px 12px">${p.hl}</span>` : ''}
       <span class="chip" style="cursor:default"><span class="dot" style="background:${cat.color}"></span>${p.j || p.v || p.y}</span>
-      <a class="chip" href="${link}" target="_blank" rel="noopener"><span class="dot" style="background:var(--blue)"></span>${publisherLink ? '[Link] Publisher page ↗' : 'Find on Google Scholar ↗'}</a>
-      ${p.story ? `<a class="chip" href="project.html?id=${p.story}"><span class="dot" style="background:var(--amber)"></span>Related research story →</a>` : ''}
+      <a class="chip" href="${link}" target="_blank" rel="noopener"><span class="dot" style="background:var(--blue)"></span>${publisherLink ? uiText('publisher') : uiText('scholar')}</a>
+      ${p.story ? `<a class="chip" href="project.html?id=${p.story}"><span class="dot" style="background:var(--amber)"></span>${uiText('relatedStory')}</a>` : ''}
     </div>`;
 
   document.getElementById('paperBody').innerHTML = `
     ${p.intro ? `
     <div class="paper-intro reveal">
-      <h3 class="pp-h">Introduction</h3>
+      <h3 class="pp-h">${uiText('introduction')}</h3>
       <p>${p.intro}</p>
     </div>` : ''}
     <div class="paper-figwrap reveal d1">
       <div class="paper-fig" id="paperFig"></div>
-      <div class="pf-note">Schematic redrawn for this site — no publisher material reproduced.</div>
+      <div class="pf-note">${uiText('schematicNote')}</div>
     </div>
     <div class="paper-cols">
       <div class="reveal d1">
-        <h3 class="pp-h">Key points</h3>
+        <h3 class="pp-h">${uiText('keyPoints')}</h3>
         <ul class="m-facts">${(p.points||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
       </div>
       <div class="reveal d2">
         <div class="contrib-block" style="margin-top:0">
-          <h3 class="pp-h" style="color:var(--amber)">My contribution</h3>
+          <h3 class="pp-h" style="color:var(--amber)">${uiText('contribution')}</h3>
           <p>${p.contrib || ''}</p>
         </div>
         ${p.story ? `
         <div style="margin-top:24px">
-          <a class="m-link" href="project.html?id=${p.story}">How this fits my main work → scroll the story</a>
+          <a class="m-link" href="project.html?id=${p.story}">${uiText('fitMainWork')}</a>
         </div>` : ''}
       </div>
     </div>`;
@@ -122,11 +122,11 @@
   const next = ALL_PAPERS[(idx + 1) % ALL_PAPERS.length];
   document.getElementById('paperNext').innerHTML = `
     <a href="paper.html?id=${prev.id}">
-      <span class="sn-k">← Previous paper</span>
+      <span class="sn-k">${uiText('prevPaper')}</span>
       <span class="sn-t" style="font-size:17px">${prev.t.slice(0,90)}${prev.t.length>90?'…':''}</span>
     </a>
     <a href="paper.html?id=${next.id}">
-      <span class="sn-k">Next paper →</span>
+      <span class="sn-k">${uiText('nextPaper')}</span>
       <span class="sn-t" style="font-size:17px">${next.t.slice(0,90)}${next.t.length>90?'…':''}</span>
     </a>`;
 

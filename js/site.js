@@ -54,6 +54,22 @@ if(!veil){
   document.body.appendChild(veil);
 }
 function esc(s){ return s == null ? '' : s; }
+function workflowHTML(steps){
+  if(!steps || !steps.length) return '';
+  return `
+    <div class="m-workflow" aria-label="workflow diagram">
+      <div class="wf-title">Workflow</div>
+      <div class="wf-rail">
+        ${steps.map((s,i)=>`
+          <div class="wf-step">
+            <span class="wf-num">${String(i+1).padStart(2,'0')}</span>
+            <b>${esc(s.t)}</b>
+            <small>${esc(s.d)}</small>
+          </div>`).join('')}
+      </div>
+      <div class="wf-loop">review-fix loop → repeat until clean</div>
+    </div>`;
+}
 function openProjectModal(p, catMap){
   const cat = catMap ? catMap[p.cat] : null;
   const imgs = [p.img, p.img2].filter(Boolean);
@@ -71,6 +87,7 @@ function openProjectModal(p, catMap){
         <h3>${esc(p.title)}</h3>
         <p class="m-tagline">${esc(p.tagline)}</p>
         <ul class="m-facts">${(p.facts||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
+        ${workflowHTML(p.workflow)}
         ${p.refs ? `<div class="m-refs">${p.refs.map(r=>'» '+r).join('<br>')}</div>` : ''}
         ${p.tags ? `<div class="m-tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>` : ''}
         ${p.link ? `<a class="m-link" href="${p.link}" target="_blank" rel="noopener">View write-up on GitHub ↗</a>` : ''}
@@ -172,8 +189,6 @@ function initAITabs(){
       b.classList.add('active');
       panels[i].classList.add('active');
     }));
-    const img = proj.querySelector('.slide-img img');
-    if(img) proj.querySelector('.slide-img').addEventListener('click',()=>openLightbox(img.src));
   });
 }
 

@@ -1,7 +1,7 @@
 /* ==================================================================
    Publication, conference, patent & thesis data.
-   Source: paper archive scan (papers containing "Wei-Kai Lee")
-   + CV Ver16. role: "first" | "cofirst" | "coauthor"
+   Source: verified paper archive and CV data.
+   role: "first" | "cofirst" | "coauthor"
    Each entry: id, points (key findings), contrib (my role), doi,
    img (page-1 render in assets/papers/), story (research story link)
    ================================================================== */
@@ -14,6 +14,13 @@ const PUB_TOPICS = {
 };
 
 const PUBS = [
+  /* ---- 2024 ---- */
+  { id:"oe2024backlight", y:2024, t:"Stacking architecture for collimated backlight using cylindrical lens sheet with linear light sources or edge-lit/direct-lit BLU", j:"Opt. Express", topic:"display", role:"coauthor", doi:"10.1364/OE.519269",
+    points:[
+      "A cylindrical-lens-sheet stack collimates backlight architectures built from linear light sources or edge-lit/direct-lit BLUs.",
+      "Extends the display-optics toolkit beyond OLED emission stacks into directional backlight design."],
+    contrib:"Optical modeling and display-optics analysis support for the collimated-backlight architecture." },
+
   /* ---- 2014 ---- */
   { id:"apl2014", y:2014, t:"Enhancing light out-coupling of organic light-emitting devices using indium tin oxide-free low-index transparent electrodes", j:"Appl. Phys. Lett.", topic:"outcoupling", role:"coauthor", doi:"10.1063/1.4876607",
     points:[
@@ -111,11 +118,11 @@ const PUBS = [
     contrib:"Optical simulation and device EQE analysis for the boron-complex devices." },
 
   /* ---- 2018 ---- */
-  { id:"advsci2018", y:2018, t:"A vision toward ultimate optical out-coupling for organic light-emitting diode displays: 3D pixel configuration", j:"Advanced Science", topic:"display", role:"coauthor", doi:"10.1002/advs.201800467", hl:"2–4× out-coupling", story:"pixel3d",
+  { id:"advsci2018", y:2018, t:"A vision toward ultimate optical out-coupling for organic light-emitting diode displays: 3D pixel configuration", j:"Advanced Science", topic:"display", role:"cofirst", doi:"10.1002/advs.201800467", hl:"2–4× out-coupling", story:"pixel3d",
     points:[
       "Treats the real pixel as a <b>three-dimensional optical structure</b>: high-index filler extracts waveguided modes, reflective bank electrodes redirect confined light.",
       "<b>2–4× out-coupling vs the planar baseline</b> in simulation — a roadmap paper for display makers."],
-    contrib:"Co-developed the optical simulation framework for non-planar pixels — extending the lab's planar model to 3D geometries was the enabling step for this vision paper." },
+    contrib:"<b>Co-first author.</b> Co-developed the optical simulation framework for non-planar pixels — extending the lab's planar model to 3D geometries was the enabling step for this vision paper." },
   { id:"jpe2018", y:2018, t:"Quantitative analyses of high electroluminescence efficiency of thermally activated delayed fluorescence emitters based on acridine-triazine hybrids", j:"J. Photon. Energy", topic:"analysis", role:"first", doi:"10.1117/1.JPE.8.032105", story:"strategy",
     points:[
       "Dissects <b>why acridine-triazine TADF devices are so efficient</b>: PLQY, dipole orientation, and low-index transport layers each quantified.",
@@ -130,6 +137,11 @@ const PUBS = [
       "Extends the SpiroAC-TRZ design philosophy to the hardest color: pure blue."],
     contrib:"Dipole-orientation measurement and optical/EQE analysis for the blue emitter series.",
     story:"dipole" },
+  { id:"jsid2019pixel", y:2019, t:"Three-dimensional pixel configurations for optical outcoupling of OLED displays—optical simulation", j:"J. Soc. Inf. Display", topic:"display", role:"first", doi:"10.1002/jsid.769", story:"pixel3d",
+    points:[
+      "Journal version of the 3D-pixel optical-simulation framework, selected from the SID Display Week distinguished papers.",
+      "Models high-index filler and reflective geometry as pixel-scale extraction structures for OLED displays."],
+    contrib:"<b>First author.</b> Built the optical simulation framework and wrote the journal paper translating the SID work into a full article." },
 
   /* ---- 2020 ---- */
   { id:"afm2020red", y:2020, t:"A red TADF emitter simultaneously having high photoluminescence quantum efficiency and preferentially horizontal emitting dipole orientation", j:"Adv. Funct. Mater.", topic:"materials", role:"coauthor", doi:"10.1002/adfm.201908839",
@@ -138,7 +150,7 @@ const PUBS = [
       "High-efficiency red electroluminescence from a purely organic emitter."],
     contrib:"Orientation-factor extraction and device optical simulation quantifying the orientation advantage.",
     story:"dipole" },
-  { id:"acceptor2020", y:2020, t:"Acceptor plane expansion enhances horizontal orientation of thermally activated delayed fluorescence emitters", j:"", topic:"materials", role:"coauthor",
+  { id:"acceptor2020", y:2020, t:"Acceptor plane expansion enhances horizontal orientation of thermally activated delayed fluorescence emitters", j:"Sci. Adv.", topic:"materials", role:"coauthor", doi:"10.1126/sciadv.aba7855",
     points:[
       "Expanding the <b>acceptor's molecular plane</b> systematically increases horizontal dipole orientation.",
       "Turns orientation from an empirical observation into a molecular design parameter."],
@@ -154,7 +166,7 @@ const PUBS = [
       "Benzothiophene-fused spiro-acridine donors push red TADF efficiency further.",
       "Fused-ring rigidity maintains PLQY at long wavelengths."],
     contrib:"Device optics and EQE analysis for the red emitter devices." },
-  { id:"cpel2020", y:2020, t:"Integrating molecular rigidity and chirality into TADF for highly efficient sky-blue circularly polarized electroluminescence", j:"", topic:"materials", role:"coauthor",
+  { id:"cpel2020", y:2021, t:"Integrating molecular rigidity and chirality into TADF for highly efficient sky-blue circularly polarized electroluminescence", j:"Mater. Horiz.", topic:"materials", role:"coauthor", doi:"10.1039/D0MH01521K",
     points:[
       "Chiral TADF emitters produce <b>circularly polarized electroluminescence</b> at sky-blue wavelengths with high efficiency.",
       "Molecular rigidity preserves both PLQY and dissymmetry."],
@@ -167,6 +179,11 @@ const PUBS = [
     story:"dipole" },
 
   /* ---- 2021 ---- */
+  { id:"oe2021antiuv", y:2021, t:"Modified distributed Bragg reflector for protecting organic light-emitting diode displays against ultraviolet light", j:"Opt. Express", topic:"display", role:"coauthor", doi:"10.1364/OE.418105", story:"antiuv",
+    points:[
+      "Modified <b>distributed Bragg reflector</b> cover-lens stacks block UV/HEV light while preserving high visible transmission.",
+      "Device tests confirm reduced UV-induced degradation, connecting thin-film design to display reliability."],
+    contrib:"Thin-film optical design and device-level verification workflow for the UV/HEV-blocking OLED display structures." },
   { id:"oe2021thin", y:2021, t:"Enhance external quantum efficiency of organic light-emitting devices using thin transparent electrodes", j:"Org. Electron.", topic:"outcoupling", role:"first", doi:"10.1016/j.orgel.2020.106057", hl:"EQE 57.5%", story:"validation",
     points:[
       "Thinning the transparent electrode <b>suppresses the waveguided mode at its origin</b> — design strategy C, quantified.",
@@ -179,7 +196,7 @@ const PUBS = [
       "<b>EQE 80.8%</b> — approaching the practical ceiling for planar OLEDs.",
       "The capstone of the eight-year out-coupling campaign."],
     contrib:"<b>Co-first author.</b> Led the optical design and simulation that predicted the 80% device before fabrication, and the loss-channel analysis proving where every photon went." },
-  { id:"unsym2021", y:2021, t:"An unsymmetrical TADF emitter enables orange-red electroluminescence with 31.7% external quantum efficiency", j:"", topic:"materials", role:"coauthor",
+  { id:"unsym2021", y:2021, t:"An unsymmetrical TADF emitter enables orange-red electroluminescence with 31.7% external quantum efficiency", j:"Mater. Horiz.", topic:"materials", role:"coauthor", doi:"10.1039/D1MH00613D",
     points:[
       "Unsymmetrical donor-acceptor design lifts orange-red TADF to <b>31.7% EQE</b>.",
       "Breaks the symmetry habit in TADF molecular design."],
@@ -196,6 +213,11 @@ const PUBS = [
     contrib:"Device optical characterization and EQE quantification." },
 
   /* ---- 2022-2023 ---- */
+  { id:"oe2022film", y:2022, t:"Using angle-selective optical film to enhance the light extraction of a thin-film encapsulated 3D reflective pixel for OLED displays", j:"Opt. Express", topic:"display", role:"cofirst", doi:"10.1364/OE.477797", story:"pixel3d",
+    points:[
+      "Angle-selective optical film mitigates thin-film-encapsulation optical losses in reflective 3D OLED pixels.",
+      "Optical simulation shows how angular filtering recovers light otherwise trapped by encapsulation layers."],
+    contrib:"<b>Co-first author.</b> Optical simulation and design analysis for angle-selective extraction in thin-film-encapsulated 3D pixels." },
   { id:"oe2022white", y:2022, t:"Analyses of emission efficiencies of white organic light-emitting diodes having multiple emitters in single emitting layer", j:"Org. Electron.", topic:"analysis", role:"coauthor", doi:"10.1016/j.orgel.2022.106474",
     points:[
       "Analytical framework for <b>multi-emitter white OLEDs</b>: how cavity and energy transfer partition emission between emitters in one layer.",
@@ -214,12 +236,6 @@ const PUBS = [
 ];
 
 const CONFS = [
-  { id:"sid2022directivity", y:2022, t:"High-directivity emitting pixel devices for advanced display applications", v:"SID Display Week 2022",
-    points:["Pixel devices with <b>highly directional emission</b> — the light-source half of a light-field display engine."],
-    contrib:"Optical design lineage: directional pixel concepts grown out of the microcavity and 3D-pixel work.", story:"lightfield" },
-  { id:"sid2022ambient", y:2022, t:"Optimizing OLED pixel structures for consistently low ambient light reflection over viewing angles", v:"SID Display Week 2022",
-    points:["Pixel-level optical design holding <b>ambient reflection low across all viewing angles</b> — polarizer-free contrast made practical."],
-    contrib:"Built on the polarizer-free contrast scheme I co-developed (CF + microcavity double absorption).", story:"polarizer-free" },
   { id:"sid2020curved", y:2020, t:"Image distortion and image correction of curved OLED displays", v:"SID Display Week 2020", role:"first",
     points:["Mapped <b>geometric image distortion</b> of curved displays analytically, then demonstrated software correction via the inverse mapping."],
     contrib:"<b>First author.</b> Derived the distortion theory, built the correction algorithm, presented at Display Week.", story:"curved" },
@@ -260,12 +276,21 @@ const ALL_PAPERS = [...PUBS].sort((a,b)=>b.y-a.y).concat(CONFS);
 function findPaper(id){
   return PUBS.find(p=>p.id===id) || CONFS.find(p=>p.id===id) || null;
 }
+function paperUrl(p){
+  if(!p) return '';
+  if(p.link) return p.link;
+  return p.doi ? `https://doi.org/${p.doi}` : '';
+}
 
 /* ==================================================================
    Original introductions + redrawn SVG figure specs (no publisher
    material). Merged into PUBS/CONFS entries at load time.
    ================================================================== */
 const PAPER_EXTRA = {
+oe2024backlight:{ intro:"This 2024 Optics Express paper moves the display-optics story from OLED pixels to the illumination engine behind LCD-style systems: how to collimate a backlight using cylindrical lens sheets with linear light sources or edge-lit/direct-lit BLUs. The useful theme is the same as the OLED work — control the angular distribution of light at the architecture level, not only by making emitters brighter.",
+  fig:{type:'curveT', ylab:'relative intensity', xlab:'viewing angle', note:'collimation narrows the angular spread', cap:'Redrawn illustration — cylindrical-lens backlight collimation', curves:[
+    {color:'#5c686f', label:'conventional BLU', at:.22, dash:'5 4', pts:[[0,.16],[.15,.32],[.3,.55],[.5,.68],[.7,.55],[.85,.32],[1,.16]]},
+    {color:'#26e0c8', label:'collimated stack', at:.52, pts:[[0,.03],[.22,.05],[.38,.24],[.48,.94],[.52,.94],[.62,.24],[.78,.05],[1,.03]]}]}},
 apl2014:{ intro:"In a planar OLED, the indium-tin-oxide anode is one of the main culprits behind trapped light: its high refractive index feeds the waveguided modes that never leave the device. This paper asks a simple question — what happens if the transparent electrode simply has a low index instead? Replacing ITO with a high-conductivity PEDOT:PSS electrode removes the waveguide at its source and lifts the device efficiency well beyond the ITO control, opening the index-engineering route our group pursued for the rest of the decade.",
   fig:{type:'stack', cap:'Redrawn schematic — low-index polymer anode removes the waveguided channel', eqe:'↑', layers:[
     {n:'Al cathode', c:'#9aa6ad'},{n:'ETL / EIL'},{n:'Emitting layer', c:'#7ae582', hl:true},{n:'HTL'},
@@ -323,6 +348,8 @@ jpe2018:{ intro:"Why exactly are acridine-triazine TADF devices so efficient? Th
     {n:'Low-n HTL', c:'#26e0c8', hl:true, note:'suppresses waveguided loss'},{n:'ITO anode'},{n:'Glass substrate', h:1.3}]}},
 blue2019:{ intro:"Pure blue is TADF's hardest color: the wide gap fights both efficiency and orientation. The spiro-linked double donor-acceptor architecture answers with geometry — two D-A arms locked by a spiro junction force the molecule flat against the substrate, keeping the emitting dipoles horizontal at deep-blue wavelengths.",
   fig:{type:'molecule', donor:'double donor arms', acceptor:'double acceptor arms', link:'spiro', em:'pure blue', color:'#7b6bff', theta:'high', cap:'Redrawn schematic — spiro-locked double D-A blue emitter'}},
+jsid2019pixel:{ intro:"This journal paper is the optical-simulation half of the 3D pixel programme: instead of treating a display as a flat OLED stack, it models the real pixel geometry as an extraction structure. High-index filler redirects trapped modes, while the pixel bank and reflective surfaces become optical elements rather than dead layout.",
+  fig:{type:'pixel', filler:true, reflective:true, gain:'simulation', cap:'Redrawn schematic — 3D pixel optical-simulation framework'}},
 afm2020red:{ intro:"High photoluminescence quantum yield and horizontal dipole orientation usually trade against each other in red TADF — the flexible donors that help one hurt the other. This emitter achieves both simultaneously, and the optical analysis quantifies how much each property contributes to the final red electroluminescence efficiency.",
   fig:{type:'molecule', donor:'rigid donor', acceptor:'red-shifting acceptor', link:'bond', em:'red', color:'#ff7b6b', theta:'high', cap:'Redrawn schematic — red TADF with PLQY and orientation together'}},
 acceptor2020:{ intro:"What makes a TADF molecule lie down? This study finds a systematic answer: expanding the π-plane of the acceptor increases the horizontal orientation of the emitting dipole, film after film. Orientation stops being folklore and becomes a design parameter you can dial with molecular area.",
@@ -337,6 +364,10 @@ cpel2020:{ intro:"Add chirality to a rigid TADF skeleton and the device emits ci
   fig:{type:'molecule', donor:'chiral donor', acceptor:'acceptor', link:'spiro', em:'sky-blue CP light', color:'#4fc3f7', chiral:true, cap:'Redrawn schematic — chiral TADF for CP-EL'}},
 rational2020:{ intro:"Rather than screening molecules and hoping for orientation, this work designs for it: the red TADF emitter is built so its transition dipole has essentially no out-of-plane option. The result is near-perfect horizontal orientation, verified by angle-resolved measurement, and efficient red electroluminescence.",
   fig:{type:'molecule', donor:'planar donor', acceptor:'planar acceptor', link:'bond', em:'red', color:'#ff7b6b', theta:'~perfect', cap:'Redrawn schematic — orientation by design'}},
+oe2021antiuv:{ intro:"Sunlight and UV exposure degrade OLED displays long before the user sees the chemistry happening. This work uses modified distributed-Bragg-reflector cover-lens stacks to block UV and high-energy visible light while keeping the visible band highly transmissive and flat. The important part is that the optical design is validated on devices, not just on spectra.",
+  fig:{type:'curveT', ylab:'transmittance', xlab:'wavelength (nm)', note:'block UV/HEV · pass the visible, flat', cap:'Redrawn illustration — modified DBR anti-UV design', curves:[
+    {color:'#5c686f', label:'plain DBR (ripple)', at:.75, dash:'5 4', pts:[[0,.04],[.18,.06],[.28,.5],[.4,.86],[.5,.78],[.6,.9],[.7,.8],[.85,.9],[1,.84]]},
+    {color:'#26e0c8', label:'modified DBR', at:.6, pts:[[0,.02],[.18,.03],[.3,.55],[.42,.93],[.6,.95],[.8,.94],[1,.95]]}]}},
 oe2021thin:{ intro:"The waveguided mode lives mostly inside the high-index ITO layer — so make the layer too thin to host it. This first-author study walks the transparent electrode down in thickness, with simulation and experiment side by side at every step: current-voltage-luminance, spectra, and angular profiles all tracked by the optical model. The thin-ITO device reaches 57.5% EQE with a lens, and the agreement between symbols and lines is the quiet headline.",
   fig:{type:'stack', cap:'Redrawn schematic — strategy C, thin transparent electrode', eqe:'57.5%', lens:true, layers:[
     {n:'Al cathode', c:'#9aa6ad'},{n:'ETL'},{n:'Emitting layer →→', c:'#7ae582', hl:true},{n:'HTL'},
@@ -352,6 +383,8 @@ cu2021:{ intro:"Iridium is scarce; copper is not. This carbene-Cu(I)-acridine co
   fig:{type:'molecule', metal:'Cu', ligand:'carbene / acridine', em:'red', color:'#ff7b6b', cap:'Redrawn schematic — earth-abundant Cu(I) emitter'}},
 jmcc2021:{ intro:"Quinazoline enters the TADF acceptor library: paired with standard donors it yields emitters whose devices reach about 28% EQE, demonstrating that the acceptor space beyond triazine still holds high-performance chemistry.",
   fig:{type:'molecule', donor:'donor', acceptor:'quinazoline', link:'bond', em:'TADF', color:'#26e0c8', eqe:'~28%', cap:'Redrawn schematic — quinazoline-acceptor TADF'}},
+oe2022film:{ intro:"Thin-film encapsulation protects OLED displays, but it can also trap light by steering useful rays into the wrong angular channels. This co-first-author Optics Express paper introduces an angle-selective optical film between the pixel and the encapsulation layers, using angular filtering to retain the 3D reflective pixel's extraction benefit after encapsulation.",
+  fig:{type:'pixel', filler:true, reflective:true, gain:'TFE loss recovered', cap:'Redrawn schematic — angle-selective film on a reflective 3D pixel'}},
 oe2022white:{ intro:"White OLEDs that mix several emitters in a single layer hide a quantitative puzzle: how much of the injected energy does each emitter actually receive? This analysis builds a cavity-aware framework that extracts the partition ratios from the measured spectrum, separating optics from energy transfer. The method later became my SpectraFit-γ software.",
   fig:{type:'curveT', ylab:'EL intensity', xlab:'wavelength (nm)', note:'one spectrum, two emitters — partition extracted by cavity-aware fitting', cap:'Redrawn illustration — multi-emitter white OLED analysis', curves:[
     {color:'#4fc3f7', label:'blue emitter · γ₁', at:.22, pts:[[0,.05],[.12,.45],[.22,.75],[.32,.45],[.45,.12],[.7,.03],[1,.01]]},
@@ -373,9 +406,5 @@ sid2020curved:{ intro:"Curvature giveth efficiency and taketh image fidelity: a 
   fig:{type:'curved', grid:true, cap:'Redrawn schematic — distortion mapped, then inverted'}},
 sid2020pixel:{ intro:"Scaling the 3D-pixel results from test structures to display projections: this SID talk estimates what the measured pixel-level out-coupling gains mean for full-panel efficiency — the display-engineering case for adopting the architecture.",
   fig:{type:'pixel', filler:true, reflective:true, gain:'ultra-high', cap:'Redrawn schematic — display-level 3D pixel projection'}},
-sid2022ambient:{ intro:"Killing ambient reflection at normal incidence is easy; keeping it low at every viewing angle is the real problem. This work optimizes the pixel's optical structure so the polarizer-free contrast scheme holds its low reflection across angles — making the approach practical for real displays.",
-  fig:{type:'pixel', ambient:true, cap:'Redrawn schematic — angle-robust low ambient reflection'}},
-sid2022directivity:{ intro:"A light-field display needs pixels that emit light with an address — narrow, steerable beams rather than Lambertian spray. These high-directivity emitting pixel devices use cavity and pixel-geometry design to collimate the emission, providing the light-source half of a light-field engine.",
-  fig:{type:'pixel', directional:true, cap:'Redrawn schematic — high-directivity emitting pixel'}}
 };
 ALL_PAPERS.forEach(p => Object.assign(p, PAPER_EXTRA[p.id] || {}));

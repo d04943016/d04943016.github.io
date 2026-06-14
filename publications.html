@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=13">
+<link rel="stylesheet" href="css/site.css?v=14">
 </head>
 <body>
 
@@ -178,9 +178,9 @@
   </div>
 </footer>
 
-<script src="js/pubs.js?v=2"></script>
-<script src="js/site.js?v=2"></script>
-<script src="js/charts.js?v=2"></script>
+<script src="js/pubs.js?v=14"></script>
+<script src="js/site.js?v=14"></script>
+<script src="js/charts.js?v=14"></script>
 <script>
 /* featured cards */
 const FEATURED = [
@@ -193,14 +193,18 @@ const FEATURED = [
   { pid:"afm2016", metric:"64.5%", badge:"ITO-free", t:"Achieving above 60% EQE using ITO-free low-index electrode and horizontally oriented emitters", j:"Adv. Funct. Mater. 26, 3250 (2016)", c:"var(--cyan)", story:"strategy" },
   { pid:"sid2020curved", metric:"SID", badge:"First author", t:"Image distortion and image correction of curved OLED displays", j:"SID Display Week 2020", c:"var(--amber)", story:"curved" }
 ];
-document.getElementById('pubFeatured').innerHTML = FEATURED.map((f,i)=>`
+document.getElementById('pubFeatured').innerHTML = FEATURED.map((f,i)=>{
+  const p = findPaper(f.pid);
+  const ext = paperUrl(p);
+  return `
   <div class="pubcard reveal ${'d'+(i%4)}" style="--pc:${f.c}">
     <span class="pc-badge">${f.badge}</span>
     <span class="pc-metric">${f.metric}</span>
     <h4><a class="pt-link" href="paper.html?id=${f.pid}">${f.t}</a></h4>
     <span class="pc-j">${f.j}</span>
-    <a href="paper.html?id=${f.pid}">paper intro →</a>${f.story?` <a href="project.html?id=${f.story}">story →</a>`:''}
-  </div>`).join('');
+    ${ext?`<a href="${ext}" target="_blank" rel="noopener">[Link]</a> `:''}<a href="paper.html?id=${f.pid}">intro →</a>${f.story?` <a href="project.html?id=${f.story}">story →</a>`:''}
+  </div>`;
+}).join('');
 
 /* full list with filters */
 const listEl = document.getElementById('pubList');
@@ -215,6 +219,7 @@ function renderPubs(topic, firstOnly){
         ${p.role==='first'?'<span class="role-badge first">First</span>':''}
         ${p.role==='cofirst'?'<span class="role-badge cofirst">Co-first</span>':''}
         ${p.hl?`<span class="hl-badge">${p.hl}</span>`:''}
+        ${paperUrl(p)?`<a class="story-link" href="${paperUrl(p)}" target="_blank" rel="noopener">[Link]</a>`:''}
         <a class="story-link" href="paper.html?id=${p.id}">intro →</a>
         ${p.story?`<a class="story-link" href="project.html?id=${p.story}">story →</a>`:''}
       </span>
@@ -246,6 +251,7 @@ document.getElementById('confList').innerHTML = CONFS.slice().sort((a,b)=>b.y-a.
     <span class="pt"><a class="pt-link" href="paper.html?id=${c.id}">${c.t}</a><span class="pj"><i>●</i> ${c.v}</span></span>
     <span class="pside">
       ${c.role==='first'?'<span class="role-badge first">First</span>':''}
+      ${paperUrl(c)?`<a class="story-link" href="${paperUrl(c)}" target="_blank" rel="noopener">[Link]</a>`:''}
       <a class="story-link" href="paper.html?id=${c.id}">intro →</a>
       ${c.story?`<a class="story-link" href="project.html?id=${c.story}">story →</a>`:''}
     </span>

@@ -1,4 +1,4 @@
-/* ============ Research projects (NTU, from Self Presentation Ver 7) ============ */
+/* ============ Research projects (NTU) ============ */
 const RESEARCH_CATS = {
   modeling:  { label: "Modeling & Software", color: "var(--blue)"  },
   efficiency:{ label: "High-Efficiency OLED", color: "var(--cyan)" },
@@ -144,18 +144,6 @@ const RESEARCH = [
     tags: ["Pixel architecture", "Out-coupling", "OLED display"]
   },
   {
-    id: "polarizer-free", cat: "display",
-    title: "Polarizer-Free Ambient Contrast",
-    tagline: "Replace the thick circular polarizer with color filters and cavity design.",
-    img: "assets/slides/polarizer-free.jpg",
-    facts: [
-      "Ambient light is absorbed twice: once by the <b>color filter</b>, once by the <b>designed microcavity</b>.",
-      "Keeps high contrast without the thickness and transmission loss of a circular polarizer — relevant for foldable and thin displays."
-    ],
-    refs: ["Patented display-optics work (3 patents in display optics)"],
-    tags: ["Contrast ratio", "Microcavity", "Patent"]
-  },
-  {
     id: "antiuv", cat: "thinfilm",
     title: "Anti-UV/HEV Films for OLED Panels",
     tagline: "DBR-based cover-lens stacks that block what degrades the device.",
@@ -192,18 +180,6 @@ const RESEARCH = [
     ],
     refs: ["Designed with the TMM-backprop optimizer"],
     tags: ["AR coating", "Fabrication", "Fingerprint SNR"]
-  },
-  {
-    id: "lightfield", cat: "display",
-    title: "Light-Field Display with Metasurfaces",
-    tagline: "Highly directional OLED + metasurface deflection as a light-field engine.",
-    img: null, abstract: "λ field",
-    facts: [
-      "Concept pairing a <b>highly directional OLED light source</b> with metasurface beam deflection for glasses-free 3D.",
-      "Positioned against Looking Glass and Sony eye-sensing light-field displays."
-    ],
-    refs: ["Related: B. Liu et al., Optics Express 27, 35728 (2019)"],
-    tags: ["Metasurface", "Light field", "3D display"]
   },
   {
     id: "emitters", cat: "materials",
@@ -259,15 +235,19 @@ const RESEARCH = [
 
 /* ============ Software / side projects (vibe-coding-portfolio) ============ */
 const SOFTWARE_CATS = {
-  simulation: { label: "Simulation & Optics",  color: "var(--blue)" },
-  lab:        { label: "Lab Workflow",         color: "var(--cyan)" },
+  molecules:  { label: "Simulation & Molecules", color: "var(--blue)" },
+  simulation: { label: "Simulation & Optics",    color: "var(--blue)" },
+  exciton:    { label: "Exciton Ratio & Optics", color: "var(--blue)" },
+  dynamics:   { label: "Exciton Dynamics",       color: "var(--blue)" },
+  lab:        { label: "Lab Workflow & Analysis", color: "var(--cyan)" },
+  labml:      { label: "Lab Workflow & ML",       color: "var(--cyan)" },
   aiops:      { label: "AI Tooling",           color: "var(--green)"},
   data:       { label: "Data & Finance",       color: "var(--amber)"}
 };
 
 const SOFTWARE = [
   {
-    id: "atomistic", cat: "simulation",
+    id: "atomistic", cat: "molecules",
     title: "AtomisticStudio",
     tagline: "Browser-based ASE research workbench for atomistic simulation.",
     img: "assets/projects/atomisticstudio.png",
@@ -306,7 +286,7 @@ const SOFTWARE = [
     tags: ["React", "FastAPI", "Planar optics"]
   },
   {
-    id: "spectrafit", cat: "simulation",
+    id: "spectrafit", cat: "exciton",
     title: "SpectraFit-γ",
     tagline: "Exciton-ratio extraction from white-OLED EL spectra.",
     img: "assets/projects/spectrafit.png",
@@ -318,7 +298,7 @@ const SOFTWARE = [
     tags: ["Spectral fitting", "Color science", "OLED"]
   },
   {
-    id: "tadf-calc", cat: "simulation",
+    id: "tadf-calc", cat: "dynamics",
     title: "TADF Rate Calculator",
     tagline: "Intrinsic rate constants from TRPL + PLQY with a three-level model.",
     img: "assets/projects/tadf.jpg",
@@ -343,7 +323,7 @@ const SOFTWARE = [
     tags: ["Docker", "Flask", "Metrology", "Mobile UI"]
   },
   {
-    id: "expsheet", cat: "lab",
+    id: "expsheet", cat: "labml",
     title: "ExpSheet",
     tagline: "Local-first process & wafer experiment notebook for semiconductor work.",
     img: "assets/projects/expsheet.png",
@@ -365,6 +345,14 @@ const SOFTWARE = [
       "<b>Parallel reviewers + review-fix loops</b> until N consecutive clean rounds.",
       "Includes an end-to-end UI testing flow."
     ],
+    workflow: [
+      { t: "Setup", d: "Install skills, reviewer agents, and the domain review framework." },
+      { t: "Domain review", d: "Codex audit surfaces risk, gaps, and the next scope." },
+      { t: "Design + plan", d: "User-approved Superpowers spec and implementation plan." },
+      { t: "Review cycle", d: "Implement, freeze, then run reviewers plus Codex xhigh." },
+      { t: "Clean rounds", d: "Fix Critical/Major findings until 3 clean rounds." },
+      { t: "Orchestrator", d: "Run UI tests, collect errors/examples, and update metrics." }
+    ],
     tags: ["Claude Code", "Agents", "Code review"]
   },
   {
@@ -381,67 +369,48 @@ const SOFTWARE = [
   }
 ];
 
-/* ============ AI projects @ TSMC (slides 4-6 + CV) ============ */
+/* ============ AI projects @ TSMC ============ */
 const AI_PROJECTS = [
   {
     id: "chemical",
     color: "var(--cyan)",
     title: "Material Design Using Machine Learning",
-    impact: "→ ~10 materials design projects",
-    img: "assets/slides/ai-chemical.jpg",
+    impact: "materials design workflow",
     objective: [
-      "Design new chemicals to accelerate <b>new-material commercialization</b> in the semiconductor industry — conventionally a ~10-year cycle.",
-      "Target applications such as <b>selective deposition</b> at advanced nodes."
+      "Explore AI-assisted materials design for semiconductor R&D.",
+      "Connect molecular candidates, domain constraints, and validation signals."
     ],
     challenge: [
-      "<b>No existing chemical-design workflow</b> — the pipeline had to be defined from scratch.",
-      "<b>No data, no headcount</b> at project start; even the design target had to be negotiated.",
-    ],
-    results: [
-      "Integrated ML into a new chemical-design workflow: <b>generative model + GNN regression + uncertainty prediction + transfer learning + active learning</b>.",
-      "Validated by simulation and preliminary physical experiments.",
-      "<b>Transferred to the software product team</b>, now serving ~10 internal materials design projects.",
-      "Selected for the TSMC Digital Transformation workshop poster — <b>one of 10 groups company-wide</b>."
+      "Built a materials-design pipeline from early project requirements.",
+      "Defined data strategy and validation criteria with cross-functional partners.",
     ]
   },
   {
     id: "recipe",
     color: "var(--blue)",
     title: "Physics-Informed Recipe Optimization",
-    impact: "1–2 weeks → minutes",
-    img: "assets/slides/ai-recipe.jpg",
+    impact: "recipe optimization workflow",
     objective: [
-      "Optimize advanced-node process recipes by <b>predicting post-process structures</b> from incoming structure, process, and nucleation conditions."
+      "Optimize process recipes by linking incoming conditions with measured outcomes."
     ],
     challenge: [
-      "<b>No labeled data</b> — measurement itself had to be automated first.",
+      "Measurement automation came first, so training data could be generated consistently.",
       "Domain knowledge had to be embedded into the models, not bolted on.",
-      "Delivered in <b>3 months including experimental validation</b>."
-    ],
-    results: [
-      "Pipeline of <b>image segmentation → auto-measurement → conditioned image generation → optimization</b>.",
-      "Predicts structure variation across different incoming structures; even <b>identifies process-tool deficiencies</b>.",
-      "R&D acceleration: <b>1–2 weeks of physical experiments → several minutes</b> of computation."
+      "Validation had to be part of the workflow from the beginning."
     ]
   },
   {
     id: "lbd",
     color: "var(--green)",
     title: "Literature-Based Knowledge Discovery",
-    impact: "company-wide RAG product",
-    img: "assets/slides/ai-lbd.jpg",
+    impact: "literature discovery workflow",
     objective: [
-      "Use LLMs to extract <b>cross-disciplinary knowledge</b> (semiconductor ↔ biology/chemistry) from literature.",
+      "Use LLMs to extract <b>cross-disciplinary knowledge</b> from literature.",
       "Develop an AI-assisted research flow for R&D."
     ],
     challenge: [
-      "No LLM resource at the start — had to <b>persuade IT to share the internal LLM</b>.",
-      "Schedule and objective mismatch: R&D wants applications, IT builds systems."
-    ],
-    results: [
-      "Mentored an intern to a <b>GraphRAG prototype</b> for semiconductor-chemical identification.",
-      "Partnered with IT on a <b>company-wide RAG + deep-research product</b>, acting as the R&D domain expert for evaluation.",
-      "Internal training program scaled the methodology to TSMC R&D engineers."
+      "Coordinated evaluation and deployment constraints with platform stakeholders.",
+      "Aligned research needs with platform-building constraints."
     ]
   }
 ];

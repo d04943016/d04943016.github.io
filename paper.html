@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=13">
+<link rel="stylesheet" href="css/site.css?v=14">
 </head>
 <body>
 
@@ -59,9 +59,9 @@
   </div>
 </footer>
 
-<script src="js/pubs.js?v=2"></script>
-<script src="js/paper-figs.js?v=2"></script>
-<script src="js/site.js?v=2"></script>
+<script src="js/pubs.js?v=14"></script>
+<script src="js/paper-figs.js?v=14"></script>
+<script src="js/site.js?v=14"></script>
 <script>
 (function(){
   const id = new URLSearchParams(location.search).get('id') || ALL_PAPERS[0].id;
@@ -73,7 +73,8 @@
   document.title = p.t.slice(0,60) + " — Wei-Kai Lee";
 
   const scholarLink = 'https://scholar.google.com/scholar?q=' + encodeURIComponent('"' + p.t.slice(0,90) + '"');
-  const link = p.doi ? 'https://doi.org/' + p.doi : scholarLink;
+  const publisherLink = paperUrl(p);
+  const link = publisherLink || scholarLink;
 
   document.getElementById('paperHero').innerHTML = `
     <div class="crumb reveal" style="color:${cat.color}">
@@ -85,7 +86,7 @@
       ${p.role==='cofirst' ? '<span class="role-badge cofirst" style="font-size:11px;padding:5px 12px">Co-first author</span>' : ''}
       ${p.hl ? `<span class="hl-badge" style="font-size:11.5px;padding:5px 12px">${p.hl}</span>` : ''}
       <span class="chip" style="cursor:default"><span class="dot" style="background:${cat.color}"></span>${p.j || p.v || p.y}</span>
-      <a class="chip" href="${link}" target="_blank" rel="noopener"><span class="dot" style="background:var(--blue)"></span>${p.doi ? 'Read the paper (DOI) ↗' : 'Find on Google Scholar ↗'}</a>
+      <a class="chip" href="${link}" target="_blank" rel="noopener"><span class="dot" style="background:var(--blue)"></span>${publisherLink ? '[Link] Publisher page ↗' : 'Find on Google Scholar ↗'}</a>
       ${p.story ? `<a class="chip" href="project.html?id=${p.story}"><span class="dot" style="background:var(--amber)"></span>Related research story →</a>` : ''}
     </div>`;
 

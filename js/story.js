@@ -74,7 +74,7 @@ const VISUALS = { image:vImage, bignum:vBignum, bars:vBars, flow:vFlow, stack:vS
 
   /* hero */
   document.getElementById('storyHero').innerHTML = `
-    ${project.img ? `<div class="cover" style="background-image:url('${project.img}')"></div>` : ''}
+    <div class="cover" style="background-image:url('${project.img}')"></div>
     <div class="cover-fade"></div>
     <div class="wrap">
       <div class="crumb reveal" style="color:${cat.color}">

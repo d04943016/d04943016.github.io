@@ -276,34 +276,7 @@ const STORIES = {
     }
   ],
 
-  /* ============ 11. Polarizer-free ============ */
-  "polarizer-free": [
-    {
-      kicker: "The problem",
-      title: "The component that saves contrast costs everything else.",
-      body: "<p>A circular polarizer kills ambient reflection — and with it <b>more than half the emitted light</b>, plus precious thickness in foldable stacks.</p>",
-      visual: { type: "compare", left: { k: "Circular polarizer", v: "−58%", s: "of emitted light absorbed · too thick to fold" }, right: { k: "CF + microcavity", v: "−0%", s: "emission untouched · thin by construction", win: true } }
-    },
-    {
-      kicker: "The method",
-      title: "Absorb ambient light twice — without touching emission.",
-      body: "<p>Incoming ambient light is filtered once by the <b>color filter</b> and again by the <b>designed microcavity</b>; only the device's own emission is tuned to pass.</p>",
-      visual: { type: "flow", nodes: [
-        { t: "Ambient light arrives", s: "broadband, randomly polarized" },
-        { t: "Color filter", s: "absorbs everything off-band" },
-        { t: "Designed microcavity", s: "absorbs the remainder in-band" },
-        { t: "Low reflection · high contrast", s: "with zero emission penalty" }
-      ]}
-    },
-    {
-      kicker: "The original figure",
-      title: "The scheme, side by side with the polarizer it replaces.",
-      body: "<p>Part of a 3-patent display-optics family.</p>",
-      visual: { type: "image", src: "assets/slides/polarizer-free.jpg", cap: "Polarizer-free ambient contrast scheme · original presentation figure" }
-    }
-  ],
-
-  /* ============ 12. Anti-UV ============ */
+  /* ============ 11. Anti-UV ============ */
   "antiuv": [
     {
       kicker: "The problem",
@@ -402,27 +375,7 @@ const STORIES = {
     }
   ],
 
-  /* ============ 15. Light field ============ */
-  "lightfield": [
-    {
-      kicker: "The problem",
-      title: "Glasses-free 3D needs control over every ray's direction.",
-      body: "<p>A light-field display reconstructs the rays a real object would emit. That demands a <b>directional light source</b> and a way to steer it — at pixel scale.</p>",
-      visual: { type: "quote", text: "A display that emits not just light, but light with an address.", sub: "the light-field idea" }
-    },
-    {
-      kicker: "The concept",
-      title: "Directional OLED + metasurface deflection.",
-      body: "<p>Pair a <b>highly directional OLED</b> (microcavity-narrowed emission) with <b>metasurface beam deflectors</b> — a pixel that emits light with an address.</p>",
-      visual: { type: "flow", nodes: [
-        { t: "Microcavity OLED", s: "highly directional, narrow emission lobe" },
-        { t: "Metasurface deflector", s: "steers each beam to its viewing direction" },
-        { t: "Light field", s: "glasses-free 3D — every ray addressed" }
-      ]}
-    }
-  ],
-
-  /* ============ 16. Emitters ============ */
+  /* ============ 15. Emitters ============ */
   "emitters": [
     {
       kicker: "The problem",

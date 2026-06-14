@@ -3,7 +3,7 @@
 /* ---- visual renderers ---- */
 function vImage(v){
   return `<figure class="v-frame" data-zoom="${v.src}">
-    <span class="zoom-tag">CLICK TO ZOOM</span>
+    <span class="zoom-tag">${isZh() ? '點擊放大' : 'CLICK TO ZOOM'}</span>
     <img src="${v.src}" alt="${v.cap||''}" loading="lazy">
     ${v.cap ? `<figcaption class="v-cap">${v.cap}</figcaption>` : ''}
   </figure>`;
@@ -30,7 +30,7 @@ function vFlow(v){
       <div class="fn-t"><span class="idx">${String(i+1).padStart(2,'0')}</span>${n.t}</div>
       ${n.s ? `<div class="fn-s">${n.s}</div>` : ''}
     </div>`).join('')}
-    ${v.loop ? `<span class="farrow" style="--d:${v.nodes.length*0.18}s">↺ repeat</span>` : ''}
+    ${v.loop ? `<span class="farrow" style="--d:${v.nodes.length*0.18}s">${isZh() ? '↺ 重複' : '↺ repeat'}</span>` : ''}
   </div>`;
 }
 function vStack(v){
@@ -59,6 +59,18 @@ function vChart(v){
   return `<div class="v-chart" data-chart="${v.kind}"></div>`;
 }
 const VISUALS = { image:vImage, bignum:vBignum, bars:vBars, flow:vFlow, stack:vStack, compare:vCompare, quote:vQuote, chart:vChart };
+function mergeStoryText(base, zh){
+  if(!isZh() || !zh) return base;
+  if(Array.isArray(base)) return base.map((item,i)=>mergeStoryText(item, zh[i]));
+  if(base && typeof base === 'object'){
+    const out = {...base};
+    Object.keys(zh).forEach(k=>{
+      out[k] = base[k] && typeof base[k] === 'object' ? mergeStoryText(base[k], zh[k]) : zh[k];
+    });
+    return out;
+  }
+  return zh ?? base;
+}
 
 /* ---- page assembly ---- */
 (function(){
@@ -66,7 +78,9 @@ const VISUALS = { image:vImage, bignum:vBignum, bars:vBars, flow:vFlow, stack:vS
   const id = params.get('id') || RESEARCH[0].id;
   const idx = Math.max(0, RESEARCH.findIndex(p => p.id === id));
   const project = RESEARCH[idx];
-  const story = STORIES[project.id] || [];
+  const storyBase = STORIES[project.id] || [];
+  const storyZh = (typeof STORIES_ZH !== 'undefined' && STORIES_ZH[project.id]) || [];
+  const story = storyBase.map((s,i)=>mergeStoryText(s, storyZh[i]));
   const cat = RESEARCH_CATS[project.cat];
   const projectTitle = i18n(project, 'title');
 

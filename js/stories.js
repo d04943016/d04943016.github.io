@@ -476,3 +476,449 @@ const STORIES = {
     }
   ]
 };
+
+const STORIES_ZH = {
+  "eqe-timeline": [
+    {
+      kicker: "問題",
+      title: "OLED 幾乎完美地產生光，卻把光困在元件裡。",
+      body: "<p>現代發光材料能以<b>接近 100% 的內部量子效率</b>把電子轉成光子。但有機層、電極與玻璃之間的折射率落差，會把大部分光困在元件內部。</p><p>典型平面 OLED 只有大約四分之一的光能真正逃出來。</p>",
+      visual: { label: "傳統外部量子效率", sub: "75% 的光沒有離開元件" }
+    },
+    {
+      kicker: "方法",
+      title: "先模擬，再製作；八年持續迭代。",
+      body: "<p>這段效率研究中的每個策略，都先由<b>我們自行開發的光學模擬器在製作元件前預測</b>，再由實驗室實際製作與量測驗證。</p><p>2013 到 2021 年反覆執行的這個閉環，才是真正的成果。</p>",
+      visual: { nodes: [
+        { t: "建模", s: "電磁波 + 幾何光學，偶極群體" },
+        { t: "設計", s: "用模擬選定層折射率與厚度" },
+        { t: "製作", s: "熱蒸鍍與完整元件堆疊" },
+        { t: "量測", s: "EQE、光譜、角度分佈，回饋模型" }
+      ]}
+    },
+    {
+      kicker: "結果：看它發生",
+      title: "從傳統極限推進到 80.8%。",
+      body: "<p>每個點都是已發表、已實際製作的元件，依照我們完成它們的時間排序。黃色階梯代表當時持續刷新中的紀錄。</p><p><b>滑過任何元件</b>可看結構與文獻；也可以切換透鏡組別，重新播放這八年的演進。</p>"
+    },
+    {
+      kicker: "原始圖",
+      title: "八年濃縮在一張圖。",
+      body: "<p>這是我自己簡報中的總結圖：每個點都是實測元件，紅色虛線是這個領域一開始面對的傳統極限。</p>",
+      visual: { cap: "實驗 EQE 結果，2013–2021 · 原始簡報圖" }
+    }
+  ],
+
+  "optical-model": [
+    {
+      kicker: "問題",
+      title: "OLED 裡的發光體不是一顆燈泡。",
+      body: "<p>它是位在<b>奈米尺度光學腔中的量子發光體</b>。干涉、偏振、近場耦合與 Purcell effect 都會改變光能否出來；傳統 ray tracing 看不到這些物理。</p>",
+      visual: { left: { k: "電磁波光學", s: "干涉 · TE/TM · 近場 · 微腔" }, right: { k: "幾何光學", s: "基板、透鏡，以及通往眼睛的路徑" } }
+    },
+    {
+      kicker: "方法",
+      title: "從 Maxwell 方程式一路接到人眼能量測的世界。",
+      body: "<p>模型從<b>以 dyadic Green function 求解的單一電偶極</b>出發，加入真實發光體群體的統計，再把結果交給幾何光學。</p>",
+      visual: { nodes: [
+        { t: "Maxwell 方程式", s: "Dyadic Green function · 電偶極源" },
+        { t: "發光體群體", s: "偶極方向 · 本質光譜 · PLQY" },
+        { t: "Purcell effect", s: "光腔改變的輻射速率與 q_eff" },
+        { t: "幾何光學", s: "基板、透鏡、視角，也就是可量測世界" }
+      ]}
+    },
+    {
+      kicker: "影響",
+      title: "後續所有工作的地基。",
+      body: "<p>這個模型後來成為實驗室的模擬軟體、參數萃取方法，以及本站每個高效率元件設計背後的引擎。</p>",
+      visual: { label: "篇期刊論文建立在這個基礎上", sub: "引用 > 4,000" }
+    },
+    {
+      kicker: "原始圖",
+      title: "我在簡報中使用的三步驟模型。",
+      visual: { cap: "平面 OLED 光學模型 · 原始簡報圖" }
+    }
+  ],
+
+  "simulator": [
+    {
+      kicker: "問題",
+      title: "只有一個人會跑的模型，還不是工具。",
+      body: "<p>光學模型原本活在 scripts 裡。每位新學生都要花數月才能使用；每個元件研究也會把專家時間消耗在設定，而不是物理本身。</p>",
+      visual: { text: "瓶頸從來不是物理，而是只有作者本人能操作它。", sub: "為什麼必須把它做成軟體" }
+    },
+    {
+      kicker: "建置",
+      title: "在實驗室裡做出接近商用等級的模擬器。",
+      body: "<p>這是一套 Python GUI 工具，包含<b>結構、材料與使用者管理</b>、anisotropic nk、coherent-incoherent stacks、批次模擬，以及 12 個用於電磁分析、最佳化與參數萃取的功能面板。</p>",
+      visual: { cap: "GUI · 超過 300 個 source files · 原始簡報圖" }
+    },
+    {
+      kicker: "架構",
+      title: "模組化，因為研究每週都在變。",
+      body: "<p>平面波、source optics、ensemble 與參數萃取模組，都藏在同一套 command interface 後面；新的物理可以放進來，而不用改 GUI。</p>",
+      visual: { cap: "程式架構 · 原始簡報圖" }
+    },
+    {
+      kicker: "結果",
+      title: "先設計元件，再把它做出來。",
+      body: "<p>在 simulation-first workflow 下，實際做出的元件更常符合預期；實驗室不再只靠猜。</p>",
+      visual: { left: { k: "之前", s: "trial-and-error 時期的實驗效率" }, right: { k: "之後", s: "模擬導引的元件設計" } }
+    }
+  ],
+
+  "dipole": [
+    {
+      kicker: "問題",
+      title: "同一種發光體，兩個薄膜卻有不同 EQE。為什麼？",
+      body: "<p>因為發光體是<b>天線，不是點光源</b>。水平偶極比較容易把光送出元件；垂直偶極則更容易餵進 waveguide 與 plasmon loss。方向性是看不見的隱藏變數，也無法靠顯微鏡直接看出來。</p><p><b>用按鈕翻轉偶極</b>，觀察光往哪裡走。</p>"
+    },
+    {
+      kicker: "方法",
+      title: "讓薄膜自己說出它的方向性。",
+      body: "<p>自製<b>角度與偏振解析 photoluminescence 量測系統</b>，搭配石英半圓柱透鏡與旋轉偵測器，量到角度發光圖樣，再用各向異性光學模型反推出方向因子與本質光譜。</p>",
+      visual: { cap: "角度與 p 偏振相依 PL 架設 · 原始簡報圖" }
+    },
+    {
+      kicker: "結果",
+      title: "各向異性模型用量測證明自己勝出。",
+      body: "<p>當 spacer layer 變厚時，isotropic fitting 會出現系統性誤差；anisotropic treatment 則能貼住資料。萃取出的參數後來成為<b>實驗室每個元件模擬的標準輸入</b>，包括紀錄元件背後 θ<sub>//</sub> = 83–87% 的發光體。</p>",
+      visual: { nodes: [
+        { t: "量測", s: "角度 + 偏振 PL 光譜" },
+        { t: "擬合", s: "各向異性光學模型" },
+        { t: "萃取", s: "方向因子 · 本質光譜" },
+        { t: "回饋", s: "元件模擬與設計" }
+      ]}
+    }
+  ],
+
+  "validation": [
+    {
+      kicker: "驗證",
+      title: "模型是在實驗室裡取得信任，不是在白板上。",
+      body: "<p>模型預測薄透明電極能降低 waveguided loss，所以我們實際製作元件並把模型拿來受測：<b>符號是實驗，線是模擬</b>。</p>",
+      visual: { cap: "J-V-L 與光學模擬對實驗 · Org. Electron. 89, 106057 (2021)" }
+    },
+    {
+      kicker: "結果",
+      title: "線穿過了實驗點。",
+      body: "<p>電流、亮度、光譜與角度分佈都不用過度 fitting 就能重現；薄 ITO 策略本身也確實有效。</p>",
+      visual: { label: "薄 ITO + macro lens 的 EQE", sub: "第一作者工作 · Org. Electron. 2021" }
+    }
+  ],
+
+  "strategy": [
+    {
+      kicker: "問題",
+      title: "光會死在四個地方。",
+      body: "<p>Radiation 能逃出來；其餘都是損失：高折射率 ITO 與有機層中的 <b>waveguided modes</b>、金屬陰極附近的 <b>surface plasmons</b>，以及困在玻璃中的 <b>substrate modes</b>。</p><p>每個損失通道都需要自己的對策。</p>",
+      visual: { items: [
+        { l: "Radiation（逃出）" },
+        { l: "基板模式" },
+        { l: "波導模式" },
+        { l: "表面電漿" }
+      ]}
+    },
+    {
+      kicker: "方法",
+      title: "四條出光路徑：A、B、C、D。",
+      body: "<p><b>A.</b> 高折射率陽極 + 低折射率 HIL。<br><b>B.</b> 低折射率 PEDOT:PSS 陽極，移除 ITO。<br><b>C.</b> 薄 HTL 與薄陽極，讓發光層更靠近基板。<br><b>D.</b> 高折射率藍寶石基板上的薄陽極。</p><p>四個策略都先由模擬預測，再被實際製作並發表。</p>",
+      visual: { cap: "設計策略 A–D · 原始簡報圖" }
+    },
+    {
+      kicker: "結果",
+      title: "每個策略都被量測。",
+      body: "<p>部分結果搭配 macro lens；策略 D 與高 θ<sub>//</sub> 發光體結合後達到紀錄。</p>",
+      visual: { items: [
+        { l: "A · TNO + TZ-SBA" },
+        { l: "B · PEDOT + lens" },
+        { l: "C · 薄 ITO + lens" },
+        { l: "D · 藍寶石 + lens" }
+      ]}
+    }
+  ],
+
+  "record-device": [
+    {
+      kicker: "目標",
+      title: "當所有策略都對齊，會發生什麼？",
+      body: "<p>一個元件，同時放進所有策略：高折射率基板收下玻璃留不住的光；薄陽極壓低 waveguide；低折射率 HTL 抑制 plasmon；再加上朝正確方向輻射的發光體。</p>",
+      visual: { cap: "80.8% 元件，逐層拆解", layers: [
+        { n: "Macro lens", note: "收集基板光" },
+        { n: "藍寶石基板", note: "n ≈ 1.7，策略 D" },
+        { n: "薄 ITO 陽極", note: "降低 waveguided loss" },
+        { n: "低折射率 HTL", note: "抑制 plasmon coupling" },
+        { n: "EML · TZ-SBA", note: "θ// = 87% 水平偶極" },
+        { n: "ETL / EIL" },
+        { n: "Al 陰極" }
+      ]}
+    },
+    {
+      kicker: "結果",
+      title: "80.8% 的注入電荷最後變成離開元件的光。",
+      body: "<p>這接近平面 OLED 的實用極限，而且模擬器在製作前就預測到這個方向。</p>",
+      visual: { label: "外部量子效率", sub: "W.-K. Lee et al., Org. Electron. 89, 106057 (2021)" }
+    },
+    {
+      kicker: "原始圖",
+      title: "這個數字背後的量測。",
+      visual: { cap: "策略 D 紀錄元件 · 原始簡報圖" }
+    }
+  ],
+
+  "nanomesh": [
+    {
+      kicker: "問題",
+      title: "金屬鏡面附近的 plasmon 稅。",
+      body: "<p>平坦金屬陰極會支撐 surface plasmon，悄悄吃掉約四分之一的發光體能量。平坦介面要付全額代價，所以介面必須不再平坦。</p>",
+      visual: { text: "如果 surface plasmon 需要平滑金屬表面，那就不要給它平滑表面。", sub: "一句話概念" }
+    },
+    {
+      kicker: "方法",
+      title: "用球把陽極雕塑出來。",
+      body: "<p><b>奈米/微米球微影</b>把 ITO-PEDOT 高/低折射率複合陽極做成 corrugated nanomesh；它能擾動 plasmon modes，同時保留導電性。</p>",
+      visual: { cap: "ITO nanomesh + 導電高分子複合電極 · Adv. Mater. 27, 4883 (2015)" }
+    },
+    {
+      kicker: "結果",
+      title: "61.9%：來自奈米結構電極。",
+      body: "<p>2015 年發表於 Advanced Materials，是較早證明電極幾何本身也能成為出光策略的例子之一。</p>",
+      visual: { label: "搭配 macro lens 的 EQE", sub: "Adv. Mater. 27, 4883 (2015)" }
+    }
+  ],
+
+  "curved": [
+    {
+      kicker: "問題",
+      title: "面板開始彎曲，但光學教科書還停在平面。",
+      body: "<p>曲率會改變光抵達表面的角度，因此<b>臨界角本身會變成幾何的函數</b>。當時還沒有人把這套規則寫下來。</p>",
+      visual: { text: "曲面區域明顯比平面區域亮；光是幾何就改變了物理。", sub: "啟動這個工作的觀察" }
+    },
+    {
+      kicker: "理論",
+      title: "推導每一種彎曲下的有效臨界角。",
+      body: "<p>凸面、凹面、球面與柱面：每個情況都有入射角與出射角的解析關係，並由幾何因子 <b>g</b> 控制。</p>",
+      visual: { cap: "曲面 OLED 出光理論 · SID Display Week 2019" }
+    },
+    {
+      kicker: "代價與修正",
+      title: "曲率會扭曲影像，所以反向補償它。",
+      body: "<p>把發光面映射到觀看平面，可以量化影像扭曲；再把<b>反向映射寫進軟體</b>，就能在曲面顯示器上恢復幾何正確的影像。</p>",
+      visual: { cap: "影像扭曲與修正 · SID Display Week 2020, W.-K. Lee et al." }
+    },
+    {
+      kicker: "結果",
+      title: "1.6× 更多光，而且沒有幾何扭曲。",
+      body: "<p>理論、展示與修正演算法，都是第一作者 SID 工作。</p>",
+      visual: { label: "相對平面元件的出光增益", sub: "SID Display Week 2019 / 2020" }
+    }
+  ],
+
+  "pixel3d": [
+    {
+      kicker: "問題",
+      title: "像素一直被當成平面，但它不是。",
+      body: "<p>真實 OLED 像素是<b>三維地形</b>，包含 bank、filler、encapsulation。每個表面都是平面模型忽略掉的光學機會。</p>",
+      visual: { text: "把像素當作光學元件，而不是版圖 footprint。", sub: "Advanced Science 5, 1800467 (2018)" }
+    },
+    {
+      kicker: "方法",
+      title: "三種機制，一個架構。",
+      body: "<p>凹陷像素區中的<b>高折射率 filler</b>萃取 waveguided mode；<b>Top-TCO devices</b>抑制 surface plasmon 與角度色偏；<b>延伸到 bank 上的反射底電極</b>把受困光重新導向外部。</p>",
+      visual: { cap: "3D 像素結構 · Advanced Science 5, 1800467 (2018)" }
+    },
+    {
+      kicker: "結果",
+      title: "最高可達基準值的 4 倍。",
+      body: "<p>這是一篇 vision paper，說明當像素幾何也加入光學設計時，顯示器出光可以走到哪裡。</p>",
+      visual: { label: "相對平面基準的出光", sub: "以模擬導引的像素架構" }
+    }
+  ],
+
+  "antiuv": [
+    {
+      kicker: "問題",
+      title: "陽光會慢慢毒化 OLED。",
+      body: "<p>UV 與高能量可見光會造成元件電壓漂移並劣化材料。Cover lens 是最後一道防線，但對觀眾應該看到的可見光，它又必須維持高度透明。</p>",
+      visual: { left: { k: "UV / HEV 波段", s: "會劣化元件的波長" }, right: { k: "可見光波段", s: "影像品質需要高且平坦的穿透率" } }
+    },
+    {
+      kicker: "方法",
+      title: "從 DBR 堆疊出發，調到光譜聽話為止。",
+      body: "<p>以 distributed Bragg reflector 為起點，修改後的設計能把 UV/HEV 波段穿透率壓低，同時<b>撫平一般 DBR 在可見光留下的 passband ripple</b>。可切換兩種設計進行比較。</p>"
+    },
+    {
+      kicker: "結果",
+      title: "不只光譜，還在元件上驗證。",
+      body: "<p>放在修改版 DBR 堆疊後方的元件，呈現<b>可量測的 UV-induced voltage shift 降低</b>；這是用光學設計做可靠度工程。</p>",
+      visual: { text: "薄膜阻擋會劣化元件的光，而觀眾完全感覺不到它的存在。", sub: "K.-C. Lin et al., SID 2019" }
+    },
+    {
+      kicker: "原始圖",
+      title: "實際量測的結構。",
+      visual: { cap: "Anti-UV/HEV 薄膜結構 · SID Display Week 2019" }
+    }
+  ],
+
+  "tmm-backprop": [
+    {
+      kicker: "問題",
+      title: "薄膜設計原本是和直覺對話三個月。",
+      body: "<p>為了達到目標光譜選擇層厚，往往需要專家手動迭代；每個設計目標可能花上數週到數月。</p>",
+      visual: { left: { k: "專家手動", s: "每個薄膜設計目標" }, right: { k: "這個演算法", s: "任意光譜目標" } }
+    },
+    {
+      kicker: "洞察",
+      title: "Transfer matrix method 是可微分的，那就使用它。",
+      body: "<p>推導<b>穿過 TMM 的解析梯度</b>後，薄膜設計就能變成梯度下降；層數複雜度也從 O(N²) 降到 O(N)，並可完整向量化。</p>",
+      visual: { nodes: [
+        { t: "Forward TMM", s: "堆疊 → 光譜" },
+        { t: "Loss function", s: "與目標的距離，可任意定義" },
+        { t: "解析 backprop", s: "對每一層厚度的精確梯度" },
+        { t: "更新並重複", s: "數秒內收斂" }
+      ]}
+    },
+    {
+      kicker: "看它收斂",
+      title: "六十次迭代，幾秒鐘，完成。",
+      body: "<p>這是一個最佳化 run 的即時視角：loss 下降三個數量級，層厚也逐漸穩定。<b>重播看看</b>，真的就是這麼快。</p>"
+    },
+    {
+      kicker: "結果",
+      title: "把數月專家經驗壓縮成幾秒鐘。",
+      body: "<p>Anti-UV 薄膜、AR coatings、band-pass structures，都能依需求設計。同一個演算法後來也變成 <b>Opti²Layer</b> side project。</p>",
+      visual: { label: "梯度複雜度，從 O(N²) 降下來", sub: "完整向量化 · 任意 objective" }
+    },
+    {
+      kicker: "原始圖",
+      title: "Forward 與 backward 放在同一張投影片。",
+      visual: { cap: "TMM + backpropagation · 原始簡報圖" }
+    }
+  ],
+
+  "glass": [
+    {
+      kicker: "問題",
+      title: "螢幕下指紋感測器看到的大多是雜訊。",
+      body: "<p>Cover glass 每少一點穿透率，都是感測器再也收不到的訊號。裸玻璃反射約 8%，等於對來回每個光子都課了一次 SNR 稅。</p>",
+      visual: { items: [
+        { l: "裸玻璃" },
+        { l: "單面 AR" },
+        { l: "雙面 AR" }
+      ]}
+    },
+    {
+      kicker: "方法",
+      title: "先由 backprop optimizer 設計，然後真的做出來。",
+      body: "<p>TMM-backprop 演算法搜尋設計空間；接著實際製作並量測 <b>TiO₂/LiF 2-pair stack</b>：<b>T = 99.4% peak、98.1% average</b>，在可見光範圍幾乎平坦。可切換不同 coating 比較。</p>"
+    },
+    {
+      kicker: "結果",
+      title: "幾乎不存在的玻璃。",
+      body: "<p>從演算法到鍍膜機，再到光譜儀；完整閉環被關上了。</p>",
+      visual: { label: "實測峰值穿透率", sub: "TiO₂/LiF · 2 pairs · 雙面 AR" }
+    },
+    {
+      kicker: "原始圖",
+      title: "設計與實驗並排。",
+      visual: { cap: "高穿透率玻璃：設計 + 實驗 · 原始簡報圖" }
+    }
+  ],
+
+  "emitters": [
+    {
+      kicker: "問題",
+      title: "物理先拿走了 75%。",
+      body: "<p>自旋統計會讓四分之三的 excitons 進入 triplet states；對螢光材料來說，這些狀態是看不見的。第一代 OLED 在還沒碰到光學之前，內部效率就先被限制在 25%。</p>",
+      visual: { label: "第一代發光材料中進入 triplets 的 excitons", sub: "自旋統計問題" }
+    },
+    {
+      kicker: "演進",
+      title: "三代材料，把 triplets 一步步拿回來。",
+      body: "<p><b>Phosphorescence</b> 用重金屬收割 triplets。<b>TADF</b> 則只靠分子設計做到同樣的事：donor-acceptor 系統利用熱能把 triplets 回收成可發光的 singlets。</p>",
+      visual: { nodes: [
+        { t: "第一代 · 螢光", s: "IQE ≤ 25%，只用 singlets" },
+        { t: "第二代 · 磷光", s: "IQE 約 100%，銥/鉑錯合物" },
+        { t: "第三代 · TADF", s: "IQE 約 100%，無重金屬、純有機設計" }
+      ]}
+    },
+    {
+      kicker: "原始圖",
+      title: "三代材料並排比較。",
+      body: "<p>我們在 phosphorescent 與 TADF 系統上的材料研究，共貢獻到 19 篇期刊論文。</p>",
+      visual: { cap: "有機發光材料三代演進 · 原始簡報圖" }
+    }
+  ],
+
+  "exciton": [
+    {
+      kicker: "問題",
+      title: "一條 TRPL 曲線，是有五個未知數的謎題。",
+      body: "<p>Radiative、non-radiative、intersystem crossing、reverse intersystem crossing，全都糾纏在同一條 transient decay 裡。材料化學需要的是<b>各別的本質速率常數</b>，不是混在一起的模糊曲線。</p>",
+      visual: { text: "大家都量的 decay curve，藏著大家真正需要的五個數字。", sub: "為什麼速率萃取重要" }
+    },
+    {
+      kicker: "方法",
+      title: "把 kinetics 寫成矩陣，誠實地解它。",
+      body: "<p>以<b>矩陣形式速率方程</b>描述 S₁/T₁ population，同時擬合 transient PL 與 PLQY，並在物理限制下得到每一個本質速率常數。</p>",
+      visual: { cap: "Exciton dynamics 與 rate equations · 原始簡報圖" }
+    },
+    {
+      kicker: "結果",
+      title: "給化學家的設計規則。",
+      body: "<p>比較 acridine donors 與 <b>CN-substituted pyridine/pyrimidine acceptors</b> 後，我們得到方向性可調的 TADF 發光體（AFM 2016）。這個模型後來也延伸成 <b>TADF rate-calculator</b> side project。</p>",
+      visual: { nodes: [
+        { t: "量測", s: "TRPL + PLQY" },
+        { t: "擬合", s: "三能階矩陣模型" },
+        { t: "萃取", s: "k_r、k_nr、k_ISC、k_RISC" },
+        { t: "回饋合成", s: "下一代發光體設計" }
+      ]}
+    }
+  ],
+
+  "spectrum-shift": [
+    {
+      kicker: "問題",
+      title: "同一個分子，顏色卻變了；但沒有人改分子。",
+      body: "<p>TADF 發光體會隨摻雜濃度發生光譜位移，對需要顏色穩定的元件工程來說是一個麻煩。</p>",
+      visual: { text: "改變的不是發光體，而是它的鄰居。", sub: "濃度誘發光譜位移" }
+    },
+    {
+      kicker: "解釋",
+      title: "極性、永久偶極，以及分子是否能旋轉。",
+      body: "<p>這個位移跟<b>環境極性</b>與發光體的<b>永久偶極矩</b>有關，Py56 的 excited state 可高達 32.7 D；並可分成可旋轉（溶液、室溫）與凍結（固態、77 K）兩種 regime。</p>",
+      visual: { cap: "濃度誘發光譜位移機制 · 原始簡報圖" }
+    },
+    {
+      kicker: "價值",
+      title: "讓顏色成為可預測的設計參數。",
+      body: "<p>當機制被量化後，光譜位置就不再只是 surprise，而是可以設計的參數。</p>",
+      visual: { label: "Py56 excited state 的永久偶極矩", sub: "造成位移的槓桿" }
+    }
+  ],
+
+  "antenna": [
+    {
+      kicker: "挑戰",
+      title: "做一個會自己瞄準的天線。",
+      body: "<p>大學時參加 IEEE AP-S Student Design Challenge：設計一套自適應天線系統，能偵測訊號方向並重新配置自己去追蹤，包含實體硬體。</p>",
+      visual: { label: "全球準決賽隊伍", sub: "IEEE AP-S Student Design Challenge · 5 人團隊" }
+    },
+    {
+      kicker: "系統",
+      title: "Pilot 先聽，followers 變形，GA 做決策。",
+      body: "<p><b>Pilot antenna</b> 偵測訊號方向；<b>follower antennas</b> 透過<b>genetic algorithm</b>重新配置；自製 RF 硬體包含 phase shifters、power detectors、switches、DAQ，從筆電把閉環關起來。</p>",
+      visual: { cap: "自適應天線系統 · 硬體 + 軟體設計" }
+    },
+    {
+      kicker: "收穫",
+      title: "第一個完整 full-stack 專案。",
+      body: "<p>最佳化演算法透過自製電子電路驅動真實硬體；這個模式後來在每個專案裡不斷重現。</p>",
+      visual: { nodes: [
+        { t: "感測", s: "pilot antenna、區域偵測" },
+        { t: "最佳化", s: "genetic-algorithm configuration search" },
+        { t: "驅動", s: "switches、phase shifters、followers" }
+      ]}
+    }
+  ]
+};

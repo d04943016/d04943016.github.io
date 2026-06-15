@@ -295,22 +295,55 @@ if(!veil){
   document.body.appendChild(veil);
 }
 function esc(s){ return s == null ? '' : s; }
-function workflowHTML(steps, stepsZh){
-  const wfSteps = isZh() ? (stepsZh || steps || []) : (steps || []);
-  const loopText = isZh() ? 'review-fix 循環 → 重複直到乾淨' : 'review-fix loop → repeat until clean';
-  if(!steps || !steps.length) return '';
+function workflowHTML(project){
+  const steps = project.workflow || [];
+  const wfSteps = isZh() ? (project.workflowZh || steps || []) : steps;
+  const loops = isZh() ? (project.workflowLoopsZh || project.workflowLoops || []) : (project.workflowLoops || []);
+  const reviewers = isZh() ? (project.reviewersZh || project.reviewers || []) : (project.reviewers || []);
+  const colors = ['#7b6bff','#4fc3f7','#26e0c8','#7ae582','#ffc857','#ff9b67','#ff7b6b'];
+  if(!steps.length) return '';
   return `
     <div class="m-workflow" aria-label="workflow diagram">
-      <div class="wf-title">${isZh() ? '流程' : 'Workflow'}</div>
-      <div class="wf-rail">
+      <div class="wf-head">
+        <div>
+          <span class="wf-title">${isZh() ? '流程' : 'Workflow'}</span>
+          <b>${isZh() ? '從 production iteration 到 reviewer 收斂' : 'Production iteration to reviewer convergence'}</b>
+        </div>
+        <span>${isZh() ? 'review → build → freeze → clean' : 'review → build → freeze → clean'}</span>
+      </div>
+      <div class="wf-timeline" style="--wf-count:${wfSteps.length}">
         ${wfSteps.map((s,i)=>`
-          <div class="wf-step">
+          <div class="wf-step" style="--wf-c:${colors[i % colors.length]};--wf-i:${i}">
+            <span class="wf-dot"></span>
             <span class="wf-num">${String(i+1).padStart(2,'0')}</span>
             <b>${esc(s.t)}</b>
             <small>${esc(s.d)}</small>
           </div>`).join('')}
       </div>
-      <div class="wf-loop">${loopText}</div>
+      ${(loops.length || reviewers.length) ? `
+      <div class="wf-detail-grid">
+        ${loops.length ? `
+        <div class="wf-loop-panel">
+          <div class="wf-subtitle">${isZh() ? '迭代回圈' : 'Iteration loops'}</div>
+          ${loops.map((l,i)=>`
+            <div class="wf-loop-chip" style="--wf-c:${colors[(i+1) % colors.length]}">
+              <b>${esc(l.t)}</b>
+              <span>${esc(l.d)}</span>
+            </div>`).join('')}
+        </div>` : ''}
+        ${reviewers.length ? `
+        <div class="wf-reviewers">
+          <div class="wf-subtitle">${isZh() ? 'Reviewer matrix' : 'Reviewer matrix'}</div>
+          <div class="wf-reviewer-grid">
+            ${reviewers.map((r,i)=>`
+              <div class="wf-reviewer" style="--wf-c:${colors[i % colors.length]}">
+                <b>${esc(r.t)}</b>
+                <span>${esc(r.k)}</span>
+                <small>${esc(r.d)}</small>
+              </div>`).join('')}
+          </div>
+        </div>` : ''}
+      </div>` : ''}
     </div>`;
 }
 function openProjectModal(p, catMap){
@@ -331,7 +364,7 @@ function openProjectModal(p, catMap){
         <h3>${esc(title)}</h3>
         <p class="m-tagline">${esc(i18n(p, 'tagline'))}</p>
         <ul class="m-facts">${i18nList(p, 'facts').map(f=>`<li>${f}</li>`).join('')}</ul>
-        ${workflowHTML(p.workflow, p.workflowZh)}
+        ${workflowHTML(p)}
         ${p.refs ? `<div class="m-refs">${p.refs.map(r=>'» '+r).join('<br>')}</div>` : ''}
         ${p.tags ? `<div class="m-tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>` : ''}
         ${p.link ? `<a class="m-link" href="${p.link}" target="_blank" rel="noopener">${isZh() ? '在 GitHub 看 write-up ↗' : 'View write-up on GitHub ↗'}</a>` : ''}

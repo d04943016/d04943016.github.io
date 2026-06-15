@@ -433,20 +433,54 @@ const SOFTWARE = [
       "包含端到端 UI 測試流程。"
     ],
     workflow: [
-      { t: "Setup", d: "Install skills, reviewer agents, and the domain review framework." },
-      { t: "Domain review", d: "Codex audit surfaces risk, gaps, and the next scope." },
-      { t: "Design + plan", d: "User-approved Superpowers spec and implementation plan." },
-      { t: "Review cycle", d: "Implement, freeze, then run reviewers plus Codex xhigh." },
-      { t: "Clean rounds", d: "Fix Critical/Major findings until 3 clean rounds." },
-      { t: "Orchestrator", d: "Run UI tests, collect errors/examples, and update metrics." }
+      { t: "Review setup", d: "Install skills, reviewer agents, and the domain review framework." },
+      { t: "Production iteration", d: "Codex domain review, user scope choice, Superpowers design and plan." },
+      { t: "Implementation", d: "Build the approved scope, then freeze feature work." },
+      { t: "Review cycle", d: "Parallel reviewers + mandatory Codex xhigh audit every round." },
+      { t: "3 clean rounds", d: "Fix Critical/Major findings until the clean counter reaches three." },
+      { t: "Orchestrator", d: "Run UI scenarios, collect errors/examples, trigger focused reviewers." },
+      { t: "Metrics/history", d: "Write round summaries, iteration metrics, and the final report." }
     ],
     workflowZh: [
-      { t: "設定", d: "安裝 skills、reviewer agents 與領域 review framework。" },
-      { t: "領域 review", d: "Codex 稽核風險、缺口與下一步 scope。" },
-      { t: "設計與計畫", d: "使用者確認 Superpowers spec 與實作計畫。" },
-      { t: "Review 循環", d: "實作、freeze，再跑 reviewers 與 Codex xhigh。" },
-      { t: "乾淨輪次", d: "修 Critical/Major findings，直到連續 3 輪乾淨。" },
-      { t: "Orchestrator", d: "跑 UI tests、收集錯誤/範例並更新 metrics。" }
+      { t: "Review setup", d: "安裝 skills、reviewer agents 與領域 review framework。" },
+      { t: "Production iteration", d: "Codex domain review、使用者選 scope、Superpowers 設計與計畫。" },
+      { t: "Implementation", d: "實作確認過的 scope，完成後進入 feature freeze。" },
+      { t: "Review cycle", d: "平行 reviewers，加上每輪必跑 Codex xhigh audit。" },
+      { t: "3 clean rounds", d: "修 Critical/Major findings，直到 clean counter 到 3。" },
+      { t: "Orchestrator", d: "跑 UI 情境、收集 errors/examples、觸發聚焦 reviewers。" },
+      { t: "Metrics/history", d: "寫入 round summaries、iteration metrics 與 final report。" }
+    ],
+    workflowLoops: [
+      { t: "Production iteration", d: "domain review → scope → design/plan → review-cycle → orchestrator" },
+      { t: "Review cycle", d: "implement/freeze → reviewers + Codex → fixes → 3 clean rounds" },
+      { t: "Orchestrator", d: "UI scenario → errors/examples → triggered reviewers → cleanup" }
+    ],
+    workflowLoopsZh: [
+      { t: "Production iteration", d: "domain review → scope → design/plan → review-cycle → orchestrator" },
+      { t: "Review cycle", d: "實作/freeze → reviewers + Codex → 修正 → 3 clean rounds" },
+      { t: "Orchestrator", d: "UI 情境 → errors/examples → triggered reviewers → cleanup" }
+    ],
+    reviewers: [
+      { t: "Code Architecture", k: "code-review", d: "Every round; architecture, security, contracts, reviewer drift." },
+      { t: "Tester", k: "tester", d: "Every round; coverage gaps and production-path regressions." },
+      { t: "Simulation User", k: "simulation-user", d: "Physics, computation, defaults, docs, and example correctness." },
+      { t: "UI/UX", k: "ui-ux", d: "Frontend, templates, interactions, units, controls, and error proximity." },
+      { t: "Data Layer", k: "data-layer", d: "SQLite, migrations, artifact storage, and data APIs." },
+      { t: "Stress Test", k: "stress-test", d: "Concurrency, volume, performance, and database contention." },
+      { t: "Benchmark", k: "benchmark", d: "QM9 / numerical validation and calculator accuracy." },
+      { t: "DFT Simulator", k: "dft-simulator", d: "Browser-based UI workflow scenarios through localhost." },
+      { t: "Codex xhigh", k: "codex-xhigh", d: "Mandatory cross-model audit in every review round." }
+    ],
+    reviewersZh: [
+      { t: "Code Architecture", k: "code-review", d: "每輪必跑；架構、安全、contracts 與 reviewer drift。" },
+      { t: "Tester", k: "tester", d: "每輪必跑；coverage gaps 與 production-path regressions。" },
+      { t: "Simulation User", k: "simulation-user", d: "物理、計算、defaults、文件與 example 正確性。" },
+      { t: "UI/UX", k: "ui-ux", d: "前端、templates、互動、單位、控制項與錯誤位置。" },
+      { t: "Data Layer", k: "data-layer", d: "SQLite、migrations、artifact storage 與 data APIs。" },
+      { t: "Stress Test", k: "stress-test", d: "Concurrency、volume、performance 與 DB contention。" },
+      { t: "Benchmark", k: "benchmark", d: "QM9 / numerical validation 與 calculator accuracy。" },
+      { t: "DFT Simulator", k: "dft-simulator", d: "透過 localhost 跑 browser-based UI workflow scenarios。" },
+      { t: "Codex xhigh", k: "codex-xhigh", d: "每個 review round 必跑的 cross-model audit。" }
     ],
     tags: ["Claude Code", "Agents", "Code review"]
   },

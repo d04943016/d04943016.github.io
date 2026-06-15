@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=17">
+<link rel="stylesheet" href="css/site.css?v=18">
 </head>
 <body>
 
@@ -59,9 +59,9 @@
   </div>
 </footer>
 
-<script src="js/pubs.js?v=17"></script>
-<script src="js/paper-figs.js?v=17"></script>
-<script src="js/site.js?v=17"></script>
+<script src="js/pubs.js?v=18"></script>
+<script src="js/paper-figs.js?v=18"></script>
+<script src="js/site.js?v=18"></script>
 <script>
 (function(){
   const id = new URLSearchParams(location.search).get('id') || ALL_PAPERS[0].id;
@@ -74,27 +74,42 @@
 
   const scholarLink = 'https://scholar.google.com/scholar?q=' + encodeURIComponent('"' + p.t.slice(0,90) + '"');
   const publisherLink = paperUrl(p);
-  const link = publisherLink || scholarLink;
+  const authorText = p.authors || (isZh() ? '作者群見出版商頁面' : 'Authors listed on publisher page');
+  const affiliations = (p.affiliations && p.affiliations.length) ? p.affiliations : [isZh() ? '單位見出版商頁面' : 'Affiliations listed on publisher page'];
+  const intro = i18n(p, 'intro');
+  const points = i18nList(p, 'points');
+  const contrib = i18n(p, 'contrib');
 
   document.getElementById('paperHero').innerHTML = `
     <div class="crumb reveal" style="color:${cat.color}">
       <a href="publications.html" style="border-bottom:1px dotted var(--ink-faint)">${uiText('publications')}</a>&nbsp;/&nbsp;${i18nCat(cat)} · ${p.y}
     </div>
     <h1 class="page-title reveal d1" style="font-size:clamp(26px,3.6vw,42px);max-width:980px">${p.t}</h1>
-    <div class="contact-row reveal d2" style="margin-top:22px">
+    <div class="paper-meta reveal d2">
+      <div class="paper-meta-block paper-authors">
+        <span class="paper-meta-label">${isZh() ? '作者' : 'Authors'}</span>
+        <strong>${authorText}</strong>
+      </div>
+      <div class="paper-meta-block paper-affiliations">
+        <span class="paper-meta-label">${isZh() ? '單位' : 'Affiliations'}</span>
+        <div class="paper-meta-list">${affiliations.map(x=>`<span>${x}</span>`).join('')}</div>
+      </div>
+      <div class="paper-links">
       ${p.role==='first' ? `<span class="role-badge first" style="font-size:11px;padding:5px 12px">${isZh() ? '第一作者' : 'First author'}</span>` : ''}
       ${p.role==='cofirst' ? `<span class="role-badge cofirst" style="font-size:11px;padding:5px 12px">${isZh() ? '共同第一作者' : 'Co-first author'}</span>` : ''}
       ${p.hl ? `<span class="hl-badge" style="font-size:11.5px;padding:5px 12px">${p.hl}</span>` : ''}
       <span class="chip" style="cursor:default"><span class="dot" style="background:${cat.color}"></span>${p.j || p.v || p.y}</span>
-      <a class="chip" href="${link}" target="_blank" rel="noopener"><span class="dot" style="background:var(--blue)"></span>${publisherLink ? uiText('publisher') : uiText('scholar')}</a>
+      ${publisherLink ? `<a class="chip" href="${publisherLink}" target="_blank" rel="noopener"><span class="dot" style="background:var(--blue)"></span>${uiText('publisher')}</a>` : ''}
+      <a class="chip" href="${scholarLink}" target="_blank" rel="noopener"><span class="dot" style="background:var(--violet)"></span>${uiText('scholar')}</a>
       ${p.story ? `<a class="chip" href="project.html?id=${p.story}"><span class="dot" style="background:var(--amber)"></span>${uiText('relatedStory')}</a>` : ''}
+      </div>
     </div>`;
 
   document.getElementById('paperBody').innerHTML = `
-    ${p.intro ? `
+    ${intro ? `
     <div class="paper-intro reveal">
       <h3 class="pp-h">${uiText('introduction')}</h3>
-      <p>${p.intro}</p>
+      <p>${intro}</p>
     </div>` : ''}
     <div class="paper-figwrap reveal d1">
       <div class="paper-fig" id="paperFig"></div>
@@ -103,12 +118,12 @@
     <div class="paper-cols">
       <div class="reveal d1">
         <h3 class="pp-h">${uiText('keyPoints')}</h3>
-        <ul class="m-facts">${(p.points||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+        <ul class="m-facts">${(points||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
       </div>
       <div class="reveal d2">
         <div class="contrib-block" style="margin-top:0">
           <h3 class="pp-h" style="color:var(--amber)">${uiText('contribution')}</h3>
-          <p>${p.contrib || ''}</p>
+          <p>${contrib || ''}</p>
         </div>
         ${p.story ? `
         <div style="margin-top:24px">

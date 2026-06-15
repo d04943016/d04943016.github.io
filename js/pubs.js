@@ -407,4 +407,113 @@ sid2020curved:{ intro:"Curvature giveth efficiency and taketh image fidelity: a 
 sid2020pixel:{ intro:"Scaling the 3D-pixel results from test structures to display projections: this SID talk estimates what the measured pixel-level out-coupling gains mean for full-panel efficiency — the display-engineering case for adopting the architecture.",
   fig:{type:'pixel', filler:true, reflective:true, gain:'ultra-high', cap:'Redrawn schematic — display-level 3D pixel projection'}},
 };
-ALL_PAPERS.forEach(p => Object.assign(p, PAPER_EXTRA[p.id] || {}));
+
+const PAPER_META_DEFAULT = {
+  authors: "Wei-Kai Lee, Chung-Chih Wu, and collaborators",
+  affiliations: ["National Taiwan University; collaborating institutions are listed on the publisher page"]
+};
+const PAPER_META = {
+  oe2024backlight: {
+    authors: "Chi-Jui Chang, Chin-Chuan Wu, Po-Jui Chen, Wei-Kai Lee, Cheng-Ting Tsai, Guo-Dung J. Su, Sheng-Wen Cheng, Ren-Wei Liao, Ren-Lang Dong, and Chung-Chih Wu",
+    affiliations: [
+      "Graduate Institute of Electronics Engineering, National Taiwan University",
+      "Graduate Institute of Photonics and Optoelectronics / Department of Electrical Engineering, National Taiwan University",
+      "AU Optronics Corporation"
+    ]
+  },
+  oe2021record: {
+    authors: "Bo-Kai Wang, Wei-Kai Lee, Kai-Chen Lin, Po-Jui Chen, Yu-Hsin Huang, Sheng-Wen Wen, Xuan Zeng, Fan Ni, Shaolong Gong, Chuluo Yang, and Chung-Chih Wu",
+    affiliations: [
+      "Department of Electrical Engineering, Graduate Institute of Electronics Engineering, and Graduate Institute of Photonics and Optoelectronics, National Taiwan University",
+      "Hubei Key Lab on Organic and Polymeric Optoelectronic Materials, Department of Chemistry, Wuhan University",
+      "College of Materials Science and Engineering, Shenzhen University"
+    ]
+  }
+};
+
+const PAPER_ZH = {
+  oe2024backlight: {
+    introZh: "這篇 2024 Optics Express 論文把顯示光學的故事從 OLED 像素推到 LCD 類系統背後的照明引擎：如何用柱狀透鏡片，搭配線光源或 edge-lit/direct-lit BLU，形成高準直背光。它和 OLED 工作共用同一個核心：不是只讓光更亮，而是在架構層級控制角度分佈。",
+    pointsZh: [
+      "以柱狀透鏡片堆疊，將線光源、edge-lit BLU 或 direct-lit BLU 轉成高度準直的背光。",
+      "把顯示光學工具箱從 OLED 發光堆疊延伸到 directional backlight 設計。"
+    ],
+    contribZh: "提供準直背光架構的光學建模與顯示光學分析支援。"
+  },
+  oe2021record: {
+    introZh: "這是八年出光研究的總結：把高折射率基板、薄 ITO、低折射率 HTL 與高度水平偶極發光體放進同一個元件。藍寶石基板接收玻璃接不住的光，薄 ITO 壓低 waveguide，低折射率 HTL 減少 plasmon loss，而 TZ-SBA 發光體以 87% 水平偶極發光。搭配簡單外部透鏡後，外部量子效率超過 80%。",
+    pointsZh: [
+      "把 sapphire substrate、薄 ITO、低折射率 HTL 與 θ// = 87% 發光體整合在同一個 bottom-emitting OLED 中。",
+      "達到 <b>80.8% EQE</b>，接近平面 OLED 的實用出光極限。",
+      "這是八年 OLED out-coupling campaign 的總結性元件。"
+    ],
+    contribZh: "<b>共同第一作者。</b> 主導能在製作前預測 80% 元件的光學設計與模擬，並完成 loss-channel analysis，說明每一部分光最後去了哪裡。"
+  },
+  oe2021thin: {
+    introZh: "Waveguided mode 主要住在高折射率 ITO 裡，所以這篇工作直接把透明電極做薄，讓它不足以支撐 waveguide。研究系統性改變透明電極厚度，並把電流、亮度、光譜與角度分佈都拿來和模擬對照；薄 ITO 元件搭配透鏡達到 57.5% EQE。",
+    pointsZh: [
+      "以變薄的透明電極從源頭抑制 waveguided mode，對應設計策略 C。",
+      "<b>薄 ITO + macro lens 達到 57.5% EQE</b>，J-V-L 與角度光譜皆由模型重現。",
+      "這是一個乾淨的模型驗證案例：實驗點落在模擬線上。"
+    ],
+    contribZh: "<b>第一作者。</b> 設計研究、執行光學模擬、製作與量測元件，並撰寫論文。"
+  }
+};
+
+const PAPER_ZH_BY_TOPIC = {
+  outcoupling: {
+    intro: p => `這篇 ${p.j || p.v} 工作聚焦於 OLED 出光：如何透過電極、基板、折射率或偶極方向設計，減少被困在元件內部的光。本站以中文整理它和我主軸工作的關係。`,
+    points: [
+      "核心問題是降低 waveguided、substrate 或 plasmon loss，讓更多光從元件離開。",
+      "設計邏輯同時由光學模擬與實際元件效率驗證。"
+    ],
+    contrib: p => p.role === 'first' ? "我的貢獻包含研究設計、光學模擬、元件結果分析與論文撰寫。" : "我的貢獻集中在光學模擬、出光分析與元件效率的物理解釋。"
+  },
+  materials: {
+    intro: p => `這篇 ${p.j || p.v} 工作聚焦於 OLED 發光材料：如何用分子設計改善 PLQY、TADF/磷光機制、偶極方向或發光顏色。本站以中文整理其材料物理與元件效率之間的連結。`,
+    points: [
+      "分子設計改變發光效率、光譜位置、偶極方向或 exciton 動力學。",
+      "元件結果用來驗證材料 photophysics 是否真的轉化成高 EQE。"
+    ],
+    contrib: "我的貢獻集中在角度解析量測、偶極方向萃取、光學模擬與 EQE 分析。"
+  },
+  display: {
+    intro: p => `這篇 ${p.j || p.v} 工作把光學設計放到顯示架構層級：像素幾何、封裝薄膜、抗 UV 結構或背光準直都會改變觀看方向的光分佈。本站以中文整理其 display-optics 重點。`,
+    points: [
+      "重點不只是提高材料亮度，而是在顯示結構層級控制光的方向、損失與可靠度。",
+      "模擬與實驗一起用來確認光學架構是否能轉化為顯示效率或功能。"
+    ],
+    contrib: "我的貢獻集中在顯示光學建模、結構設計分析，以及把物理模型連到實際顯示元件。"
+  },
+  analysis: {
+    intro: p => `這篇 ${p.j || p.v} 工作聚焦於分析方法：把量測到的光譜、角度分佈或元件效率拆解成可設計的物理參數。本站以中文整理模型如何服務後續設計。`,
+    points: [
+      "把實驗量測轉換成 loss channels、emitter partition 或結構參數等可解釋量。",
+      "分析框架後續可被重複用在元件設計與軟體工具中。"
+    ],
+    contrib: "我的貢獻集中在模型建立、參數萃取、光學分析與結果詮釋。"
+  },
+  other: {
+    intro: p => `這篇 ${p.j || p.v} 工作位於 OLED 主軸之外，但仍和元件物理、薄膜或柔性電子相關。本站以中文整理它在早期研究脈絡中的位置。`,
+    points: [
+      "工作展示了元件結構、材料或製程條件如何影響實際電性/光電表現。",
+      "它補足了我早期對薄膜元件與實驗設計的訓練。"
+    ],
+    contrib: "我的貢獻集中在元件量測、資料整理與物理分析支援。"
+  }
+};
+
+function fitZhList(items, fallback){
+  const base = fallback.points || [];
+  return (items || []).map((_, i) => base[i] || base[base.length - 1] || "以中文整理此工作的核心發現。");
+}
+ALL_PAPERS.forEach(p => {
+  Object.assign(p, PAPER_EXTRA[p.id] || {});
+  Object.assign(p, PAPER_META_DEFAULT, PAPER_META[p.id] || {});
+  Object.assign(p, PAPER_ZH[p.id] || {});
+  const fb = PAPER_ZH_BY_TOPIC[p.topic] || PAPER_ZH_BY_TOPIC.display;
+  if (p.intro && !p.introZh) p.introZh = fb.intro(p);
+  if (Array.isArray(p.points) && !p.pointsZh) p.pointsZh = fitZhList(p.points, fb);
+  if (p.contrib && !p.contribZh) p.contribZh = typeof fb.contrib === 'function' ? fb.contrib(p) : fb.contrib;
+  if (p.fig && p.fig.type === 'stack' && !p.fig.direction) p.fig.direction = 'bottom';
+});

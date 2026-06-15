@@ -298,25 +298,32 @@ function hexIcon(color, n=3){
   return `<svg width="86" height="74" viewBox="0 0 86 74" xmlns="http://www.w3.org/2000/svg">${
     offs.map(o=>`<path d="${hx(o[0],o[1])}" fill="${color}" fill-opacity=".13" stroke="${color}" stroke-width="1.8"/>`).join('')}</svg>`;
 }
-function emitColumn(label,color){
-  return `<div class="hfig-emit" style="--ac:${color};--bc:color-mix(in srgb,${color} 50%,transparent)">
+/* hfig-emit down */
+function emitColumn(label,color,direction='up'){
+  return `<div class="hfig-emit ${direction === 'down' ? 'down' : ''}" style="--ac:${color};--bc:color-mix(in srgb,${color} 50%,transparent)">
     <span class="hfig-emitlbl">${esc2(label)}</span>
     <div class="hfig-arrows"><i></i><i></i><i></i></div>
     <div class="hfig-beam"></div>
   </div>`;
 }
 function htmlStack(p){
+  /* Most OLED papers here are conventional planar, bottom-emitting devices. */
+  const bottom = p.direction !== 'top';
   const rows=p.layers.map(l=>`
     <div class="slayer ${l.hl?'hl':''}" style="--lc:${l.c||'#5c686f'}">
       <span class="ln">${esc2(l.n)}</span>
       ${l.note?`<span class="lnote">${esc2(l.note)}</span>`:''}
     </div>`).join('');
+  const lens = p.lens?'<div class="hfig-lens"></div>':'';
+  const light = emitColumn(bottom ? 'light out through substrate' : 'light out','var(--amber)', bottom ? 'down' : 'up');
   return `<div class="hfig">
     ${p.eqe?`<div class="hfig-stat"><b>${esc2(p.eqe)}</b><span>EQE</span></div>`:''}
     <div style="display:flex;flex-direction:column;align-items:center">
-      ${emitColumn('light out','var(--amber)')}
-      ${p.lens?'<div class="hfig-lens"></div>':''}
-      <div class="v-stack">${rows}</div>
+      ${bottom ? '' : light}
+      ${bottom ? '' : lens}
+      <div class="v-stack ${bottom ? 'bottom-emitting' : ''}">${rows}</div>
+      ${bottom ? lens : ''}
+      ${bottom ? light : ''}
     </div>
     ${p.cap?`<div class="hfig-cap">${esc2(p.cap)}</div>`:''}
   </div>`;

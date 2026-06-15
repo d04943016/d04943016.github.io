@@ -412,22 +412,163 @@ const PAPER_META_DEFAULT = {
   authors: "Wei-Kai Lee, Chung-Chih Wu, and collaborators",
   affiliations: ["National Taiwan University; collaborating institutions are listed on the publisher page"]
 };
+const AFFIL = {
+  ntuOled: "Department of Electrical Engineering, Graduate Institute of Electronics Engineering, and Graduate Institute of Photonics and Optoelectronics, National Taiwan University",
+  ntuDisplay: "Graduate Institute of Electronics Engineering, Graduate Institute of Photonics and Optoelectronics, and Department of Electrical Engineering, National Taiwan University",
+  ntuChem: "Department of Chemistry, National Taiwan University / Institute of Atomic and Molecular Science, Academia Sinica",
+  wuhan: "Hubei Key Lab on Organic and Polymeric Optoelectronic Materials, Department of Chemistry, Wuhan University",
+  shenzhen: "College of Materials Science and Engineering, Shenzhen University",
+  auo: "AU Optronics Corporation",
+  applied: "Applied Materials, Inc.",
+  nthu: "Department of Chemistry, National Tsing Hua University",
+  nsrrc: "National Synchrotron Radiation Research Center",
+  polyera: "Polyera Taiwan Corp.",
+  itri: "Material and Chemical Research Laboratories, Industrial Technology Research Institute"
+};
 const PAPER_META = {
   oe2024backlight: {
     authors: "Chi-Jui Chang, Chin-Chuan Wu, Po-Jui Chen, Wei-Kai Lee, Cheng-Ting Tsai, Guo-Dung J. Su, Sheng-Wen Cheng, Ren-Wei Liao, Ren-Lang Dong, and Chung-Chih Wu",
-    affiliations: [
-      "Graduate Institute of Electronics Engineering, National Taiwan University",
-      "Graduate Institute of Photonics and Optoelectronics / Department of Electrical Engineering, National Taiwan University",
-      "AU Optronics Corporation"
-    ]
+    affiliations: [AFFIL.ntuDisplay, AFFIL.auo]
+  },
+  apl2014: {
+    authors: "Yi-Hsiang Huang, Chun-Yang Lu, Shang-Ta Tsai, Yu-Tang Tsai, Chien-Yu Chen, Wei-Lung Tsai, Chun-Yu Lin, Hong-Wei Chang, Wei-Kai Lee, Min Jiao, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled]
+  },
+  jpd2014: {
+    authors: "Wei-Chung Chen, Po-Ching Hsu, Chih-Wei Chien, Kuei-Ming Chang, Chao-Jui Hsu, Ching-Hsiang Chang, Wei-Kai Lee, Wen-Fang Chou, Hsing-Hung Hsieh, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled, AFFIL.polyera]
+  },
+  cc2015: {
+    authors: "Wei-Lung Tsai, Ming-Hao Huang, Wei-Kai Lee, Yi-Jiun Hsu, Kuan-Chung Pan, Yi-Hsiang Huang, Hao-Chun Ting, Monima Sarma, Yu-Yi Ho, Hung-Chieh Hu, Chung-Chia Chen, Meng-Ting Lee, Ken-Tsung Wong, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem, AFFIL.auo]
+  },
+  am2015nano: {
+    authors: "Chien-Yu Chen, Wei-Kai Lee, Yi-Jiun Chen, Chun-Yang Lu, Hoang Yan Lin, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled]
+  },
+  aom2015: {
+    authors: "Min Jiao, Chun-Yang Lu, Wei-Kai Lee, Chien-Yu Chen, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled]
+  },
+  am2015pedot: {
+    authors: "Yi-Hsiang Huang, Wei-Lung Tsai, Wei-Kai Lee, Min Jiao, Chun-Yang Lu, Chun-Yu Lin, Chien-Yu Chen, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled]
+  },
+  afm2016: {
+    authors: "Chun-Yang Lu, Min Jiao, Wei-Kai Lee, Chien-Yu Chen, Wei-Lung Tsai, Chun-Yu Lin, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled]
+  },
+  oe2016opt: {
+    authors: "Chien-Yu Chen, Yi-Jiun Chen, Wei-Kai Lee, Chun-Yang Lu, Hoang Yan Lin, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuDisplay]
+  },
+  am2016ir: {
+    authors: "Chu-Yun Kuei, Wei-Lung Tsai, Bihai Tong, Min Jiao, Wei-Kai Lee, Yun Chi, Chung-Chih Wu, Shih-Hung Liu, Gene-Hsiang Lee, and Pi-Tai Chou",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem, AFFIL.nthu]
+  },
+  orgel2016: {
+    authors: "Chun-Yu Lin, Ting-Wei Ko, Wei-Kai Lee, Nai-Wen Hu, Yi-Ting Chen, Kai-Chen Lin, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled]
+  },
+  afm2016cn: {
+    authors: "Kuan-Chung Pan, Shu-Wei Li, Yu-Yi Ho, Yi-Jiun Shiu, Wei-Lung Tsai, Min Jiao, Wei-Kai Lee, Chung-Chih Wu, Chin-Lung Chung, Tanmay Chatterjee, Yung-Shin Li, Ken-Tsung Wong, Hung-Chieh Hu, Chung-Chia Chen, and Meng-Ting Lee",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem, AFFIL.auo]
+  },
+  am2016sky: {
+    authors: "Ting-An Lin, Tanmay Chatterjee, Wei-Lung Tsai, Wei-Kai Lee, Meng-Jung Wu, Min Jiao, Kuan-Chung Pan, Chih-Lung Yi, Chin-Lung Chung, Ken-Tsung Wong, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem]
+  },
+  acsami2016: {
+    authors: "Che-Wei Hsu, Kiet Tuong Ly, Wei-Kai Lee, Chung-Chih Wu, Lai-Chin Wu, Jey-Jau Lee, Tzu-Chieh Lin, Shih-Hung Liu, Pi-Tai Chou, Gene-Hsiang Lee, and Yun Chi",
+    affiliations: [AFFIL.nthu, AFFIL.ntuOled, AFFIL.ntuChem, AFFIL.nsrrc]
+  },
+  am2017nai: {
+    authors: "Weixuan Zeng, Hsin-Yu Lai, Wei-Kai Lee, Min Jiao, Yi-Jiun Shiu, Cheng Zhong, Shaolong Gong, Tao Zhou, Guohua Xie, Monima Sarma, Ken-Tsung Wong, Chung-Chih Wu, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.ntuOled, AFFIL.ntuChem]
+  },
+  blue2017: {
+    authors: "Monima Sarma, Wei-Lung Tsai, Wei-Kai Lee, Shih-Hung Liu, Pi-Tai Chou, Ken-Tsung Wong, Chung-Chih Wu, and collaborators",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem]
+  },
+  jmcc2017: {
+    authors: "Yi-Jiun Shiu, Yi-Ting Chen, Wei-Kai Lee, Chung-Chih Wu, Tzu-Chieh Lin, Shih-Hung Liu, Pi-Tai Chou, Chin-Wei Lu, I-Chen Cheng, Yi-Jyun Lien, and Shih-Lien Lin",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem, AFFIL.nthu]
+  },
+  advsci2018: {
+    authors: "Yi-Jiun Chen, Wei-Kai Lee, Yi-Ting Chen, Chun-Yu Lin, Sheng-Wen Wen, Min Jiao, Guo-Dong Su, Hoang Yan Lin, Robert J. Visser, Byungsung Leo Kwak, Chung-Chia Chen, Wan-Yu Lin, Steve Wang, Chorng-Ping Chang, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuDisplay, AFFIL.applied]
+  },
+  jpe2018: {
+    authors: "Wei-Kai Lee, Yu-Hsin Huang, Kuan-Chung Pan, Ting-An Lin, Tanmay Chatterjee, Ken-Tsung Wong, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem]
+  },
+  blue2019: {
+    authors: "Xuan Zeng, Kuan-Chung Pan, Wei-Kai Lee, Shaolong Gong, Fan Ni, Xiao Xiao, Weixuan Zeng, Yepeng Xiang, Lisi Zhan, Yu Zhang, Chung-Chih Wu, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.shenzhen, AFFIL.ntuOled]
+  },
+  jsid2019pixel: {
+    authors: "Wei-Kai Lee, Yi-Ting Chen, Sheng-Wen Wen, Po-Hsiang Liao, Min-Chia Lee, Ting-Sheng Hsu, Yi-Jiun Chen, Guo-Dong Su, Hoang Yan Lin, Chung-Chia Chen, Wan-Yu Lin, Lisong Xu, Gang Yu, B. Leo Kwak, Robert Jan Visser, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuDisplay, AFFIL.applied]
+  },
+  afm2020red: {
+    authors: "Xu Gong, Pan Li, Yu-Hsin Huang, Chun-Yu Wang, Chen-Han Lu, Wei-Kai Lee, Cheng Zhong, Zhanxiang Chen, Weimin Ning, Chung-Chih Wu, Shaolong Gong, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.ntuOled, AFFIL.shenzhen]
+  },
+  acceptor2020: {
+    authors: "Yepeng Xiang, Pan Li, Shaolong Gong, Yu-Hsin Huang, Chun-Yu Wang, Cheng Zhong, Weixuan Zeng, Zhanxiang Chen, Wei-Kai Lee, Xiaojun Yin, Chung-Chih Wu, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.shenzhen, AFFIL.ntuOled]
+  },
+  oe2020tno: {
+    authors: "Yu-Hsin Huang, Kai-Chen Lin, Xuan Zeng, Monima Sarma, Fan Ni, Yi-Jiun Shiu, Wei-Kai Lee, Chao-Jui Hsu, Sheng-Wen Wen, Ken-Tsung Wong, Shaolong Gong, Chuluo Yang, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled, AFFIL.wuhan, AFFIL.ntuChem]
+  },
+  benzo2020: {
+    authors: "Xu Gong, Chen-Han Lu, Wei-Kai Lee, Pan Li, Yu-Hsin Huang, Zhanxiang Chen, Lisi Zhan, Chung-Chih Wu, Shaolong Gong, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.ntuOled, AFFIL.shenzhen]
+  },
+  cpel2020: {
+    authors: "Fan Ni, Chih-Wei Huang, Yukun Tang, Zhanxiang Chen, Yaxun Wu, Shengpeng Xia, Xiaosong Cao, Jung-Hsien Hsu, Wei-Kai Lee, Kailu Zheng, Zhongyan Huang, Chung-Chih Wu, and Chuluo Yang",
+    affiliations: [AFFIL.shenzhen, AFFIL.ntuOled, AFFIL.wuhan]
+  },
+  rational2020: {
+    authors: "Xuan Zeng, Yu-Hsin Huang, Shaolong Gong, Xuguang Yin, Wei-Kai Lee, Xiao Xiao, Yu Zhang, Weixuan Zeng, Chen-Han Lu, Chang-Cheng Lee, Xiu-Qin Dong, Cheng Zhong, Chung-Chih Wu, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.shenzhen, AFFIL.ntuOled]
+  },
+  oe2021antiuv: {
+    authors: "Kai-Chen Lin, Wei-Kai Lee, Bo-Kai Wang, Yu-Hsing Lin, Hsien-Hung Chen, Yi-Hwa Song, Yu-Hsin Huang, Li-Wei Shih, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuDisplay, AFFIL.auo]
+  },
+  oe2021thin: {
+    authors: "Wei-Kai Lee, Bo-Kai Wang, Kai-Chen Lin, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled]
   },
   oe2021record: {
     authors: "Bo-Kai Wang, Wei-Kai Lee, Kai-Chen Lin, Po-Jui Chen, Yu-Hsin Huang, Sheng-Wen Wen, Xuan Zeng, Fan Ni, Shaolong Gong, Chuluo Yang, and Chung-Chih Wu",
-    affiliations: [
-      "Department of Electrical Engineering, Graduate Institute of Electronics Engineering, and Graduate Institute of Photonics and Optoelectronics, National Taiwan University",
-      "Hubei Key Lab on Organic and Polymeric Optoelectronic Materials, Department of Chemistry, Wuhan University",
-      "College of Materials Science and Engineering, Shenzhen University"
-    ]
+    affiliations: [AFFIL.ntuOled, AFFIL.wuhan, AFFIL.shenzhen]
+  },
+  unsym2021: {
+    authors: "Xuan Zeng, Yu-Hsin Huang, Shaolong Gong, Pan Li, Wei-Kai Lee, Xiao Xiao, Yu Zhang, Cheng Zhong, Chung-Chih Wu, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.shenzhen, AFFIL.ntuOled]
+  },
+  cu2021: {
+    authors: "Ao Ying, Yu-Hsin Huang, Chen-Han Lu, Zhanxiang Chen, Wei-Kai Lee, Xuan Zeng, Tianhao Chen, Xiaosong Cao, Chung-Chih Wu, Shaolong Gong, and Chuluo Yang",
+    affiliations: [AFFIL.wuhan, AFFIL.ntuOled]
+  },
+  jmcc2021: {
+    authors: "Pan Li, Yepeng Xiang, Shaolong Gong, Wei-Kai Lee, Yu-Hsin Huang, Chun-Yu Wang, Chuluo Yang, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled, AFFIL.wuhan, AFFIL.shenzhen]
+  },
+  oe2022film: {
+    authors: "Po-Hsiang Liao, Wei-Kai Lee, Chang-Cheng Lee, Chun-Wei Huang, Sheng-Wen Wen, Yi-Ting Chen, Chung-Chia Chen, Wan-Yu Lin, B. Leo Kwak, Robert Jan Visser, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuDisplay, AFFIL.applied]
+  },
+  oe2022white: {
+    authors: "Chih-Wei Huang, Ting-An Lin, Wei-Kai Lee, Chen-Han Lu, Tanmay Chatterjee, Chin-Hui Chou, Ken-Tsung Wong, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuOled, AFFIL.ntuChem, AFFIL.itri]
+  },
+  oe2023em: {
+    authors: "Chang-Cheng Lee, Po-Hsiang Liao, Chun-Wei Huang, Sheng-Wen Wen, Chi-Jui Chang, Wei-Kai Lee, Yi-Ting Chen, Chung-Chia Chen, Wan-Yu Lin, B. Leo Kwak, Robert Jan Visser, and Chung-Chih Wu",
+    affiliations: [AFFIL.ntuDisplay, AFFIL.applied]
   }
 };
 

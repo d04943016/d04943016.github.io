@@ -509,8 +509,8 @@ const AI_PROJECTS = [
   {
     id: "chemical",
     color: "var(--cyan)",
-    title: "Material Design Using Machine Learning",
-    titleZh: "以機器學習進行材料設計",
+    title: "AI Material Design",
+    titleZh: "AI 材料設計",
     impact: "materials design workflow",
     impactZh: "材料設計 workflow",
     objective: [
@@ -544,21 +544,17 @@ const AI_PROJECTS = [
       "透過連結輸入條件與量測結果來優化製程 recipe。"
     ],
     challenge: [
-      "Measurement automation came first, so training data could be generated consistently.",
       "Domain knowledge had to be embedded into the models, not bolted on.",
-      "Validation had to be part of the workflow from the beginning."
     ],
     challengeZh: [
-      "必須先建立量測自動化，才能穩定產生訓練資料。",
       "領域知識需要嵌入模型，而不是事後補上。",
-      "驗證必須從一開始就是 workflow 的一部分。"
     ]
   },
   {
     id: "lbd",
     color: "var(--green)",
-    title: "Literature-Based Knowledge Discovery",
-    titleZh: "文獻式知識探索",
+    title: "Knowledge Discovery",
+    titleZh: "知識探索",
     impact: "literature discovery workflow",
     impactZh: "文獻探索 workflow",
     objective: [
